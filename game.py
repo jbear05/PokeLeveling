@@ -1,6 +1,5 @@
 """
 things to do:
-- do something with accuracy and evasion
 - add new battle stages
 - add legendary boss fights
 - add game level system
@@ -537,10 +536,11 @@ while running:
             # Start the battle if the random number is within the encounter probability
             if random.random() < BATTLE_PROBABILITY and len(region_pokemon)>0:
                 opponent_pokemon_name = random.choice(region_pokemon)
-                opponent_pokemon = pokedex[opponent_pokemon_name]  # Example level
+                opponent_pokemon = pokedex[opponent_pokemon_name]
                 lvlDiff = random.randint(-3, 2)
                 environment = (regionsForDrawing[i]["tile"] for i in range(len(regionsForDrawing)) if regionsForDrawing[i]["rect"].collidepoint(player.grid_x * TILE_SIZE, player.grid_y * TILE_SIZE)).__next__()
                 battle_stage = (i + 1 for i in range(len(environments)) if environments[i] == environment).__next__()
+                print(opponent_pokemon.moves)
                 winBattle = battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, battle_stage, player.pokemon_team[0], Pokemon(opponent_pokemon.name, opponent_pokemon.type, max(1, player.pokemon_team[0].level + lvlDiff), opponent_pokemon.moves, is_wild=True))
                 pokemon_buttons = create_pokemon_buttons(screen)
                 item_buttons = create_item_buttons(player, screen, SCREEN_WIDTH)

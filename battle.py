@@ -338,7 +338,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
         if battle_text == f"You ran away!":
             pygame.time.delay(1000)  # Add a small delay to slow down the battle
             battle_over = True
-            return True
+            return False
         elif battle_text == f"You lost the battle!":
             pygame.time.delay(1000)  # Add a small delay to slow down the battle
             battle_over = True
@@ -528,10 +528,13 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                 elif showing_moves and event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and not replacing_move:  # Left mouse button
                     for button in move_buttons:
                         if button.check_click(mouse_pos):
-                            damage, is_critical, is_effective, is_not_effective, is_null, ailment_applied, stat_change_applied, target, num_hits_text = button.action()
+                            damage, is_critical, is_effective, is_not_effective, is_null, ailment_applied, stat_change_applied, target, num_hits_text, missed = button.action()
                             if damage == f"No pp left for this move":
                                 battle_text = damage
                                 state = PLAYER_TURN
+                            elif missed:
+                                battle_text = f"{player_pokemon.name} missed!"
+                                state = PLAYER_MOVE
                             else:
                                 move_buttons = []
                                 for i, move in enumerate(player_pokemon.moves):
@@ -687,7 +690,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                     best_move = random.choice([move for move in opponent_pokemon.moves if move['pp'] > 0])
 
                 # Use the selected move
-                damage, is_critical, is_effective, is_not_effective, is_null, ailment_applied, stat_change_applied, target, num_hits_text = opponent_pokemon.use_move(best_move, player_pokemon)
+                damage, is_critical, is_effective, is_not_effective, is_null, ailment_applied, stat_change_applied, target, num_hits_text, missed = opponent_pokemon.use_move(best_move, player_pokemon)
                 battle_text = f"{opponent_pokemon.name} used {best_move['name']} for {damage} damage!"
                 state = OPPONENT_MOVE
                 if is_critical and not is_null:

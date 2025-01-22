@@ -17,6 +17,10 @@ BATTLE_PROBABILITY = 0.1  # 10% chance of encountering a wild Pokémon
 
 def use(move, player_pokemon, opponent):
     """Calculate damage based on move power and level"""
+    missed = False
+    if player_pokemon.stats['accuracy'] < 100 and (random.random() + player_pokemon.stats['accuracy']/100) < opponent.stats['evasion']/100:
+        missed = True
+        return 0, False, False, opponent.name, missed
     damage = move['power']  # Simple damage formula
     ailment_applied = False
     stat_change_applied = False
@@ -34,7 +38,7 @@ def use(move, player_pokemon, opponent):
                 target = opponent.name
                 opponent.stats[stat_change['stat']['name']] += stat_change['change'] * (opponent.stats[stat_change['stat']['name']] * 0.3)
 
-    return damage, ailment_applied, stat_change_applied, target
+    return damage, ailment_applied, stat_change_applied, target, missed
 
 
 player_pokemon_moves = {}
@@ -108,14 +112,20 @@ class Pokemon:
             return f"No pp left for this move", False, False, False, False, False, False, False, False
         move['pp'] -= 1
         if move['category'] == "physical":
-            damage, ailment_applied, stat_change_applied, target = use(move, self, opponent) 
+            damage, ailment_applied, stat_change_applied, target, missed = use(move, self, opponent) 
             damage *= (self.stats["attack"] / opponent.stats["defense"])
         elif move['category'] == "special":
-            damage, ailment_applied, stat_change_applied, target = use(move, self, opponent) 
+            damage, ailment_applied, stat_change_applied, target, missed = use(move, self, opponent) 
             damage *= (self.stats["special-attack"] / opponent.stats["special-defense"])
         else:
-            damage, ailment_applied, stat_change_applied, target = use(move, self, opponent)
-            return damage, False, False, False, False, ailment_applied, stat_change_applied, target, False
+            damage, ailment_applied, stat_change_applied, target, missed = use(move, self, opponent)
+            if missed:
+                return damage, False, False, False, False, ailment_applied, stat_change_applied, target, False, missed
+            return damage, False, False, False, False, ailment_applied, stat_change_applied, target, False, missed
+        
+        if missed:
+            return damage, False, False, False, False, ailment_applied, stat_change_applied, target, False, missed
+        
         damage = ((damage * ((2 * self.level / 5) + 2))/30 + 2)   # Apply the damage formula
         if self.type == move['type']:
             damage *= 1.5  # Apply STAB (Same Type Attack Bonus)
@@ -139,7 +149,7 @@ class Pokemon:
             num_hits_text = f"Hit {num_hits} time(s)!"
         damage = round(damage)  # Round to the nearest integer
         opponent.take_damage(damage)  # Apply the damage to the opponent
-        return damage, is_critical, is_effective, is_not_effective, is_null, ailment_applied, stat_change_applied, target, num_hits_text
+        return damage, is_critical, is_effective, is_not_effective, is_null, ailment_applied, stat_change_applied, target, num_hits_text, missed
 
     def draw(self, screen, x, y):
         """Draw the Pokémon's name and health bar"""
