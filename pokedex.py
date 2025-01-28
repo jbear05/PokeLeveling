@@ -212,9 +212,9 @@ pokedex = {
 
     "Stunky": Pokemon("Stunky", "poison", 5, ["scratch", "focus-energy"]),
 
-    "Nidoran-f": Pokemon("Nidoran-f", "poison", 5, ["growl", "scratch"]),
+    "Nidoran_f": Pokemon("Nidoran_f", "poison", 5, ["growl", "scratch"]),
 
-    "Nidoran-m": Pokemon("Nidoran-m", "poison", 5, ["leer", "peck"]),
+    "Nidoran_m": Pokemon("Nidoran_m", "poison", 5, ["leer", "peck"]),
 
     #Ghost type Pokémon
     "Sandygast": Pokemon("Sandygast", "ghost", 5, ["astonish", "tackle"]),

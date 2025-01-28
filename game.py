@@ -1,10 +1,8 @@
 """
 things to do:
-- add new battle stages
 - add legendary boss fights
 - add game level system
 - add way to see move info
-- maybe set up turn system like in the games?
 """
 
 
