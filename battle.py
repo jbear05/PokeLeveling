@@ -266,6 +266,8 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
         stats_surface = stats_font.render(stats_text, True, BLACK)
         screen.blit(stats_surface, (x, y))
 
+    poisonCheck = True
+
     while not battle_over:
         screen.fill(WHITE)
         # Draw the background
@@ -661,8 +663,15 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                     num_hits_text = None
                     state = PLAYER_MOVE
                     break
+                if player_pokemon.status == "poison" and poisonCheck:
+                    poisonCheck = False
+                    battle_text = f"{player_pokemon.name} is hurt by poison!"
+                    player_pokemon.take_damage(player_pokemon.stats['hp'] // 8)
+                    state = PLAYER_MOVE
+                    break
                 else:
                     
+                    poisonCheck = True
                     if not opponent_moved:
                         
                         state = OPPONENT_TURN
@@ -763,9 +772,14 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                     num_hits_text = None
                     state = OPPONENT_MOVE
                     break
-                
+                if opponent_pokemon.status == "poison" and poisonCheck:
+                    poisonCheck = False
+                    battle_text = f"{opponent_pokemon.name} is hurt by poison!"
+                    opponent_pokemon.take_damage(opponent_pokemon.stats['hp'] // 8)
+                    state = OPPONENT_MOVE
+                    break
                 else:
-                    
+                    poisonCheck = True
                     if not player_moved:
                         state = PLAYER_TURN
                         battle_text = f"{player_pokemon.name}'s turn!"
