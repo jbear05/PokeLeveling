@@ -1,5 +1,6 @@
 """
 things to do:
+- finish implementing status effects
 - add legendary boss fights
 - add game level system
 - add way to see move info
@@ -113,7 +114,7 @@ graveyard = ["Gastly", "Shuppet", "Litwick", "Yamask", "Phantump", "Sableye", "D
 forest = ["Caterpie", "Weedle", "Paras", "Venonat", "Pineco", "Shroomish", "Shelmet", "Kricketot", "Burmy", "Sewaddle"]
 dojo = ["Hitmonlee", "Hitmonchan", "Hitmontop", "Machop", "Mankey", "Makuhita", "Riolu", "Throh", "Sawk", "Hawlucha"]
 clouds = ["Pidgey", "Spearow", "Farfetchd", "Doduo", "Hoothoot", "Taillow", "Starly", "Pidove", "Aerodactyl", "Swablu"]
-swamp = ["Zubat", "Grimer", "Koffing", "Croagunk", "Trubbish", "Venipede", "Skorupi", "Stunky", "Nidoran_f", "Nidoran_m"]
+swamp = ["Zubat", "Grimer", "Koffing", "Croagunk", "Trubbish", "Venipede", "Skorupi", "Stunky", "Nidoran-f", "Nidoran-m"]
 dragons_den = ["Dratini", "Bagon", "Axew", "Deino", "Druddigon"]
 
 regions = {

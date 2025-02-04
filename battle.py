@@ -390,8 +390,8 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
             battle_text = f"{player_pokemon.name}'s turn!"
             state = PLAYER_TURN
             continue
-        elif battle_text != f"{player_pokemon.name}'s turn!" and battle_text != f"You don't have any of this item" and battle_text != f"{player_pokemon.name} woke up!" and battle_text != f"No pp left for this move" and battle_text != f"{player_pokemon.name} already knows 4 moves! Should a move be forgotten for {player_pokemon.learnable_moves[0]['name']}?":
-            pygame.time.delay(500)
+        elif battle_text != f"{player_pokemon.name}'s turn!" and battle_text != f"You don't have any of this item" and battle_text != f"{player_pokemon.name} woke up!" and battle_text != f"No pp left for this move" and battle_text != f"{player_pokemon.name} already knows 4 moves! Should a move be forgotten for {player_pokemon.learnable_moves[0]['name']}?" and battle_text != f"{player_pokemon.name} is trapped you can't run away!" and battle_text != f"{player_pokemon.name} is no longer confused!":
+            pygame.time.delay(750)
 
         if caught_ok[0] and battle_text == f"...":
             battle_text = f"You caught the Pokemon!"
@@ -480,6 +480,10 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                                 showing_items = True
                                 showing_moves = False
                                 showing_pokemon = False
+                            elif button.text == "Run" and player_pokemon.status == "trap":
+                                battle_text = f"{player_pokemon.name} is trapped you can't run away!"
+                                state = PLAYER_TURN
+                                pygame.time.set_timer(pygame.USEREVENT, 2000)  # Set a timer for 2 seconds
                             elif button.text == "Run" and result:
                                 battle_text = f"You ran away!"
                                 pygame.time.set_timer(pygame.USEREVENT, 2000)  # Set a timer for 2 seconds
@@ -520,14 +524,24 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                         replacing_move = False
                     break
 
-                elif showing_moves and player_pokemon.status == "sleep" and not replacing_move:
-                    battle_text = f"{player_pokemon.name} is asleep!"
-                    showing_moves = False
-                    state = STATUS_CHECK
-                    break
                 elif showing_moves and event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and not replacing_move:  # Left mouse button
                     for button in move_buttons:
                         if button.check_click(mouse_pos):
+                            if player_pokemon.status == "sleep":
+                                battle_text = f"{player_pokemon.name} is asleep!"
+                                showing_moves = False
+                                state = STATUS_CHECK
+                                break
+                            elif player_pokemon.status == "confusion":
+                                battle_text = f"{player_pokemon.name} is confused!"
+                                showing_moves = False
+                                state = STATUS_CHECK
+                                break
+                            elif player_pokemon.status == "paralysis" and random.random() < 0.6:
+                                battle_text = f"{player_pokemon.name} is paralyzed and can't move!"
+                                showing_moves = False
+                                state = PLAYER_MOVE
+                                break
                             damage, is_critical, is_effective, is_not_effective, is_null, ailment_applied, stat_change_applied, target, num_hits_text, missed = button.action()
                             if damage == f"No pp left for this move":
                                 battle_text = damage
@@ -594,18 +608,32 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                             
 
             elif state == STATUS_CHECK:
-                pygame.time.delay(500)  # Set a delay for .5 seconds
-                if random.random() < 0.7:
-                    player_pokemon.status = None
-                    battle_text = f"{player_pokemon.name} has healed it's status condition!"
-                    showing_moves = True
-                    state = PLAYER_TURN
-                    pygame.time.set_timer(pygame.USEREVENT, 2000)  # Set a timer for 2 seconds
+                healed_status = random.random() < 0.5
+                if healed_status:
+                    if player_pokemon.status == "sleep":
+                        player_pokemon.status = None
+                        battle_text = f"{player_pokemon.name} woke up!"
+                        showing_moves = True
+                        state = PLAYER_TURN
+                        pygame.time.set_timer(pygame.USEREVENT, 2000)  # Set a timer for 2 seconds
+                    
+                    elif player_pokemon.status == "confusion":
+                        player_pokemon.status = None
+                        battle_text = f"{player_pokemon.name} is no longer confused!"
+                        showing_moves = True
+                        state = PLAYER_TURN
+                        pygame.time.set_timer(pygame.USEREVENT, 2000)
 
                 elif player_pokemon.status == "sleep":
                     state = PLAYER_MOVE
                     battle_text = f"{player_pokemon.name} is asleep and can't move!"
-                    pygame.time.set_timer(pygame.USEREVENT, 2000)  # Set a timer for 2 seconds
+                    break
+                
+                elif player_pokemon.status == "confusion":
+                    state = PLAYER_MOVE
+                    battle_text = f"{player_pokemon.name} is confused and hurt itself!"
+                    player_pokemon.take_damage(10)
+                    break
 
             elif state == PLAYER_MOVE:
                 if critical_hit_text:

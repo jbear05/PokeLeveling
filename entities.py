@@ -44,7 +44,7 @@ def use(move, player_pokemon, opponent):
 player_pokemon_moves = {}
 
 class Pokemon:
-    def __init__(self, name, type, level, moves, exp = 0, status=None, is_wild=False, caught=False):
+    def __init__(self, name, type, level, moves, exp = 0, status="confusion", is_wild=False, caught=False):
         self.name = name
         self.id = uuid.uuid4()
         self.type = type
