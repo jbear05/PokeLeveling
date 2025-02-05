@@ -224,10 +224,10 @@ for region in regionsForDrawing:
         corners.append("dragons_den")
 
 # Load foreground images
-top_left_corner = pygame.image.load(create_path(f'Assets/Background/Foreground/{corners[0]}_top_left.png'))
-top_right_corner = pygame.image.load(create_path(f'Assets/Background/Foreground/{corners[1]}_top_right.png'))
-bottom_left_corner = pygame.image.load(create_path(f'Assets/Background/Foreground/{corners[2]}_bottom_left.png'))
-bottom_right_corner = pygame.image.load(create_path(f'Assets/Background/Foreground/{corners[3]}_bottom_right.png'))
+top_left_corner = pygame.image.load(create_path(f'Assets/Foreground/{corners[0]}_top_left.png'))
+top_right_corner = pygame.image.load(create_path(f'Assets/Foreground/{corners[1]}_top_right.png'))
+bottom_left_corner = pygame.image.load(create_path(f'Assets/Foreground/{corners[2]}_bottom_left.png'))
+bottom_right_corner = pygame.image.load(create_path(f'Assets/Foreground/{corners[3]}_bottom_right.png'))
 
 #scale foreground images
 top_left_corner = pygame.transform.scale(top_left_corner, (9 * TILE_SIZE, 6 * TILE_SIZE))
