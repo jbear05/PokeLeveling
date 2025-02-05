@@ -4,7 +4,6 @@ import math
 from entities import Pokemon, Player, player, player_pokemon_moves
 from battle import Button, Item
 
-
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)

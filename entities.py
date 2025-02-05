@@ -5,7 +5,6 @@ import uuid
 from typings import pokemon_advantages, pokemon_disadvantages, pokemon_null
 from move_data import get_move_data, get_pokemon_stats, get_pokemon_moves
 
-
 # Constants
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600

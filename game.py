@@ -12,11 +12,9 @@ import pygame
 import random
 from entities import Pokemon, Player, player
 from battle import battle, Item, Button
-from pokedex import pokedex
 from inventory import display_buttons, create_item_buttons, create_pokemon_buttons, display_pokemon_buttons, create_pc_pokemon_buttons, display_pc_pokemon_buttons, move_pokemon_to_pc
 
 pygame.init()
-
 
 # Constants
 SCREEN_WIDTH = 800
@@ -60,6 +58,28 @@ def generate_map(width, height):
 # Set up the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("PokeLeveling")
+
+#Loading screen
+screen.fill(WHITE)
+font = pygame.font.Font(None, 36)
+loading_text = font.render("Loading...", True, BLACK)
+loading_rect = loading_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+screen.blit(loading_text, loading_rect)
+pygame.display.flip()
+
+# Update the screen periodically
+pygame.time.set_timer(pygame.USEREVENT, 100)  # Set a timer for 100 milliseconds
+
+for event in pygame.event.get():
+    if event.type == pygame.USEREVENT:
+        screen.blit(loading_text, loading_rect)
+        pygame.display.flip()
+    elif event.type == pygame.QUIT:
+        pygame.quit()
+        exit()
+from pokedex import pokedex
+
+pygame.time.set_timer(pygame.USEREVENT, 0)  # Stop the timer
 
 # Load tile images
 grass_tile = pygame.transform.scale(pygame.image.load('Assets/Tiles/grass.png'), (TILE_SIZE, TILE_SIZE))

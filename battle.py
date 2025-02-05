@@ -5,6 +5,7 @@ import copy
 from entities import Pokemon, Player, player, player_pokemon_moves
 from typings import pokemon_disadvantages, pokemon_null, pokemon_advantages
 
+
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)

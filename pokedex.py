@@ -1,7 +1,5 @@
 from entities import Pokemon
 
-
-
 pokedex = {
     # Electric type Pokémon
     "Pikachu": Pokemon("Pikachu", "electric", 5, ["quick-attack", "thunder-shock"]),
