@@ -4,7 +4,6 @@ things to do:
 - add game level system
 - evolution system
 - add way to see move info
-- make areas all different
 - integrate specific move effects
 """
 
@@ -154,15 +153,16 @@ regions = {
     "dragons_den" : {"pokemon": random.sample(dragons_den, 5)}
 }
 
-#shuffle environments for unique map
-random.shuffle(environments)
+regionGeneration = random.sample(environments, 4)
 
 regionsForDrawing = [
-    {"encounter": pygame.Rect(0, 0, 8, 5),"rect": pygame.Rect(0, 0, 9 * TILE_SIZE, 6 * TILE_SIZE), "tile": environments[0]},  # Top-left corner
-    {"encounter": pygame.Rect(12, 0, 9, 5),"rect": pygame.Rect(11 * TILE_SIZE, 0, 9 * TILE_SIZE, 6 * TILE_SIZE), "tile": environments[1]},  # Top-right corner
-    {"encounter": pygame.Rect(0, 9, 8, 6),"rect": pygame.Rect(0, 8 * TILE_SIZE, 9 * TILE_SIZE, 7 * TILE_SIZE), "tile": environments[2]},  # Bottom-left corner
-    {"encounter": pygame.Rect(12, 9, 8, 6),"rect": pygame.Rect(11 * TILE_SIZE, 8 * TILE_SIZE, 9 * TILE_SIZE, 7 * TILE_SIZE), "tile": environments[3]},  # Bottom-right corner
+    {"encounter": pygame.Rect(0, 0, 8, 5),"rect": pygame.Rect(0, 0, 9 * TILE_SIZE, 6 * TILE_SIZE), "tile": regionGeneration[0]},  # Top-left corner
+    {"encounter": pygame.Rect(12, 0, 9, 5),"rect": pygame.Rect(11 * TILE_SIZE, 0, 9 * TILE_SIZE, 6 * TILE_SIZE), "tile": regionGeneration[1]},  # Top-right corner
+    {"encounter": pygame.Rect(0, 9, 8, 6),"rect": pygame.Rect(0, 8 * TILE_SIZE, 9 * TILE_SIZE, 7 * TILE_SIZE), "tile": regionGeneration[2]},  # Bottom-left corner
+    {"encounter": pygame.Rect(12, 9, 8, 6),"rect": pygame.Rect(11 * TILE_SIZE, 8 * TILE_SIZE, 9 * TILE_SIZE, 7 * TILE_SIZE), "tile": regionGeneration[3]},  # Bottom-right corner
 ]
+
+remaining_environments = [env for env in environments if env not in regionGeneration]
 
 # get pokedex for this level
 level_pokedex = []
