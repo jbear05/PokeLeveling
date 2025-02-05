@@ -113,6 +113,8 @@ class Pokemon:
         if move['category'] == "physical":
             damage, ailment_applied, stat_change_applied, target, missed = use(move, self, opponent) 
             damage *= (self.stats["attack"] / opponent.stats["defense"])
+            if self.status == "burn":
+                damage /= 2
         elif move['category'] == "special":
             damage, ailment_applied, stat_change_applied, target, missed = use(move, self, opponent) 
             damage *= (self.stats["special-attack"] / opponent.stats["special-defense"])
