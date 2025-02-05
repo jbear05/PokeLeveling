@@ -2,7 +2,7 @@ import pygame
 import time
 import random
 import copy
-from entities import Pokemon, Player, player, player_pokemon_moves
+from entities import Pokemon, Player, player, player_pokemon_moves, create_path
 from typings import pokemon_disadvantages, pokemon_null, pokemon_advantages
 
 
@@ -139,37 +139,37 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
 
     #Determine battle stage based on environment
     if battle_stage == 1:
-        stage = pygame.image.load(f'Assets\Battle\grass_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\grass_battle_stage.png'))
     elif battle_stage == 2:
-        stage = pygame.image.load(f'Assets\Battle\water_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\water_battle_stage.png'))
     elif battle_stage == 3:
-        stage = pygame.image.load(f'Assets\Battle\\fire_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\\fire_battle_stage.png'))
     elif battle_stage == 4:
-        stage = pygame.image.load(f'Assets\Battle\sand_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\sand_battle_stage.png'))
     elif battle_stage == 5:
-        stage = pygame.image.load(f'Assets\Battle\snow_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\snow_battle_stage.png'))
     elif battle_stage == 6:
-        stage = pygame.image.load(f'Assets\Battle\\factory_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\\factory_battle_stage.png'))
     elif battle_stage == 7:
-        stage = pygame.image.load(f'Assets\Battle\graveyard_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\graveyard_battle_stage.png'))
     elif battle_stage == 8:
-        stage = pygame.image.load(f'Assets\Battle\\forest_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\\forest_battle_stage.png'))
     elif battle_stage == 9:
-        stage = pygame.image.load(f'Assets\Battle\dojo_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\dojo_battle_stage.png'))
     elif battle_stage == 10:
-        stage = pygame.image.load(f'Assets\Battle\clouds_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\clouds_battle_stage.png'))
     elif battle_stage == 11:
-        stage = pygame.image.load(f'Assets\Battle\swamp_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\swamp_battle_stage.png'))
     elif battle_stage == 12:
-        stage = pygame.image.load(f'Assets\Battle\dragons_den_battle_stage.png')
+        stage = pygame.image.load(create_path(f'Assets\Battle\dragons_den_battle_stage.png'))
     #Scale the stage
     stage = pygame.transform.scale(stage, (width, height))
 
 
     # Load Pokémon images
-    player_pokemon_image = pygame.image.load(f'Assets\Pokemon\{player_pokemon.name}.png')
-    opponent_pokemon_image = pygame.image.load(f'Assets\Pokemon\{opponent_pokemon.name}.png')
-    caught_image = pygame.image.load('Assets\Battle\caught_sign.png')
+    player_pokemon_image = pygame.image.load(create_path(f'Assets\Pokemon\{player_pokemon.name}.png'))
+    opponent_pokemon_image = pygame.image.load(create_path(f'Assets\Pokemon\{opponent_pokemon.name}.png'))
+    caught_image = pygame.image.load(create_path('Assets\Battle\caught_sign.png'))
 
     # Scale the Pokémon images
     player_pokemon_image = pygame.transform.scale(player_pokemon_image, (100, 100))  # Scale to 100x100 pixels
@@ -385,7 +385,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
         elif battle_text == f"{player_pokemon.name} fainted!":
             pygame.time.delay(1000)
             player_pokemon = player.choose_pokemon(0)
-            player_pokemon_image = pygame.image.load(f'Assets\Pokemon\{player_pokemon.name}.png')
+            player_pokemon_image = pygame.image.load(create_path(f'Assets\Pokemon\{player_pokemon.name}.png'))
             player_pokemon_image = pygame.transform.scale(player_pokemon_image, (100, 100))  # Scale to 100x100 pixels
             battle_text = f"{player_pokemon.name} is ready to fight!"
             continue
@@ -609,7 +609,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                                 if player_pokemon.id != pokemon_choice.id:
                                     battle_text = f"Player switched to {pokemon_choice.name}!"
                                     player_pokemon = pokemon_choice
-                                    player_pokemon_image = pygame.image.load(f'Assets\Pokemon\{player_pokemon.name}.png')
+                                    player_pokemon_image = pygame.image.load(create_path(f'Assets\Pokemon\{player_pokemon.name}.png'))
                                     player_pokemon_image = pygame.transform.scale(player_pokemon_image, (100, 100))  # Scale to 100x100 pixels
                                     showing_pokemon = False
                                     state = PLAYER_MOVE

@@ -4,6 +4,9 @@ import copy
 import uuid
 from typings import pokemon_advantages, pokemon_disadvantages, pokemon_null
 from move_data import get_move_data, get_pokemon_stats, get_pokemon_moves
+#libraries for path
+import os
+import sys
 
 # Constants
 SCREEN_WIDTH = 800
@@ -12,6 +15,16 @@ TILE_SIZE = 40  # Size of each tile (square)
 GRID_WIDTH = SCREEN_WIDTH // TILE_SIZE  # Number of columns
 GRID_HEIGHT = SCREEN_HEIGHT // TILE_SIZE  # Number of rows
 BATTLE_PROBABILITY = 0.1  # 10% chance of encountering a wild Pokémon
+
+def create_path(relative_path: str) -> str:
+    '''creates and returns the path to the resource depending on if it is
+    pyinstaller exe or being run in dev environment'''
+    path: str
+    if hasattr(sys, '_MEIPASS'):
+        path = os.path.join(sys._MEIPASS, relative_path)
+    else:
+        path = os.path.join(os.path.abspath("."), relative_path)
+    return path
 
 
 def use(move, player_pokemon, opponent):
@@ -173,7 +186,7 @@ class Player:
         self.speed = 0.1  # Speed at which the player moves
 
         # Load the player image
-        self.image = [pygame.image.load('Assets\Player\player_walking_down1.png')]
+        self.image = [pygame.image.load(create_path('Assets\Player\player_walking_down1.png'))]
         self.frame = 0  # Frame counter for animation
 
     def update_frame(self):
