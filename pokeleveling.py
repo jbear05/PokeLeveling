@@ -1,9 +1,9 @@
 """
 things to do:
+- save data to json file when closed game
 - add legendary boss fights
 - add game level system
 - evolution system
-- add way to see move info
 - integrate specific move effects
 """
 
@@ -564,12 +564,15 @@ while running:
                 lvlDiff = random.randint(-3, 2)
                 environment = (regionsForDrawing[i]["tile"] for i in range(len(regionsForDrawing)) if regionsForDrawing[i]["rect"].collidepoint(player.grid_x * TILE_SIZE, player.grid_y * TILE_SIZE)).__next__()
                 battle_stage = (i + 1 for i in range(len(environments)) if environments[i] == environment).__next__()
-                print(opponent_pokemon.moves)
                 winBattle = battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, battle_stage, player.pokemon_team[0], Pokemon(opponent_pokemon.name, opponent_pokemon.type, max(1, player.pokemon_team[0].level + lvlDiff), opponent_pokemon.moves, is_wild=True))
                 pokemon_buttons = create_pokemon_buttons(screen)
                 item_buttons = create_item_buttons(player, screen, SCREEN_WIDTH)
                 pc_pokemon_buttons = create_pc_pokemon_buttons(screen, player, SCREEN_WIDTH, page)
-            if winBattle:
+            #quit game if player closes and quits battle
+            if winBattle == "quit":
+                running = False
+                break
+            elif winBattle:
                 # get player known pokedex
                 pokedex_completion = get_player_pokedex_completion(pokedex_complete, player)
                     
@@ -595,6 +598,7 @@ while running:
                     rewards_text_rect = rewards_text_surface.get_rect(center=(screen.get_width() // 2, 277))
                     rewards_start_time = pygame.time.get_ticks()  # Start the timer
                     winBattle = False
+            
 
         # Display the rewards text if the timer is running
         if rewards_start_time:

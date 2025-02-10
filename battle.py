@@ -29,7 +29,7 @@ GRAY = (128, 128, 128)
 LIGHT_GRAY = (211, 211, 211)
 
 class Button:
-    def __init__(self, x, y, width, height, text, font, bg_color, text_color, action, border_color, border_width = 2):
+    def __init__(self, x, y, width, height, text, font, bg_color, text_color, action, border_color, move_info = None, border_width = 2):
         self.rect = pygame.Rect(x, y, width, height)
         self.x = x
         self.y = y
@@ -41,6 +41,7 @@ class Button:
         self.action = action
         self.border_color = border_color
         self.border_width = border_width
+        self.move_info = move_info
 
     def draw(self, screen):
         color = self.border_color if self.hovered and self.border_color != BLACK else self.bg_color
@@ -50,6 +51,12 @@ class Button:
         text_surface = self.font.render(self.text, True, self.text_color)
         text_rect = text_surface.get_rect(center=self.rect.center)
         screen.blit(text_surface, text_rect)
+
+        # Display move information if hovered
+        if self.hovered and self.move_info:
+            info_surface = self.font.render(self.move_info, True, BLACK)
+            info_rect = info_surface.get_rect(center=(screen.get_width() // 2, 250))
+            screen.blit(info_surface, info_rect)
 
     def check_hover(self, mouse_pos):
         self.hovered = self.rect.collidepoint(mouse_pos)
@@ -198,7 +205,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
             f"{move['name']}: {move['pp']}",
             font, WHITE, BLACK,
             lambda move=move: player_pokemon.use_move(player_pokemon_moves[player_pokemon.id].get(move), opponent_pokemon),
-            button_border_types[move['type']]
+            button_border_types[move['type']], f"Power: {move['power']} Category: {move['category']}"
         ))
 
     item_buttons = []
@@ -437,7 +444,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                                 f"{move['name']}: {move['pp']}",
                                 font, WHITE, BLACK,
                                 lambda move=move: player_pokemon.use_move(player_pokemon_moves[player_pokemon.id].get(move), opponent_pokemon),
-                                button_border_types[move['type']]
+                                button_border_types[move['type']], f"Power: {move['power']} Category: {move['category']}"
                             ))
                         new_move = player_pokemon.learnable_moves[0]
                         break
@@ -451,7 +458,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
         pygame.time.set_timer(pygame.USEREVENT + 1, 100)  # Set a timer for 100 milliseconds
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return False
+                return "quit"
             
             #Handle the timer event to update the game state
             if event.type == pygame.USEREVENT + 1:
@@ -470,7 +477,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                                         f"{move['name']}: {move['pp']}",
                                         font, WHITE, BLACK,
                                         lambda move=move: player_pokemon.use_move(move, opponent_pokemon),
-                                        button_border_types[move['type']]
+                                        button_border_types[move['type']], f"Power: {move['power']} Category: {move['category']}"
                                     ))
                                 showing_moves = True
                                 showing_items = False
@@ -566,7 +573,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                                         f"{move['name']}: {move['pp']}",
                                         font, WHITE, BLACK,
                                         lambda move=move: player_pokemon.use_move(player_pokemon_moves[player_pokemon.id].get(move), opponent_pokemon),
-                                        button_border_types[move['type']]
+                                        button_border_types[move['type']], f"Power: {move['power']} Category: {move['category']}"
                                     ))
                                 move_name = button.text.split(":")[0]
                                 battle_text = f"{player_pokemon.name} used {move_name}!"
