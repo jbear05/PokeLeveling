@@ -1,6 +1,7 @@
 """
 things to do:
-- save data to json file when closed game
+- make save data deleteable
+- save map data and level data
 - add legendary boss fights
 - add game level system
 - evolution system
@@ -11,9 +12,10 @@ things to do:
 
 import pygame
 import random
-from entities import Pokemon, Player, player, create_path
+from entities import Pokemon, Player, player, create_path, load_player_data
 from battle import battle, Item, Button
 from inventory import display_buttons, create_item_buttons, create_pokemon_buttons, display_pokemon_buttons, create_pc_pokemon_buttons, display_pc_pokemon_buttons, move_pokemon_to_pc
+from data import save_player_data
 
 
 pygame.init()
@@ -153,16 +155,22 @@ regions = {
     "dragons_den" : {"pokemon": random.sample(dragons_den, 5)}
 }
 
-regionGeneration = random.sample(environments, 4)
+
+#load player data and map data
+data_retrieved, regionGeneration = load_player_data(player)
+
+#generate map depending on map data saved or not
+if not regionGeneration:
+    regionGeneration =  random.sample(range(12), 4)
 
 regionsForDrawing = [
-    {"encounter": pygame.Rect(0, 0, 8, 5),"rect": pygame.Rect(0, 0, 9 * TILE_SIZE, 6 * TILE_SIZE), "tile": regionGeneration[0]},  # Top-left corner
-    {"encounter": pygame.Rect(12, 0, 9, 5),"rect": pygame.Rect(11 * TILE_SIZE, 0, 9 * TILE_SIZE, 6 * TILE_SIZE), "tile": regionGeneration[1]},  # Top-right corner
-    {"encounter": pygame.Rect(0, 9, 8, 6),"rect": pygame.Rect(0, 8 * TILE_SIZE, 9 * TILE_SIZE, 7 * TILE_SIZE), "tile": regionGeneration[2]},  # Bottom-left corner
-    {"encounter": pygame.Rect(12, 9, 8, 6),"rect": pygame.Rect(11 * TILE_SIZE, 8 * TILE_SIZE, 9 * TILE_SIZE, 7 * TILE_SIZE), "tile": regionGeneration[3]},  # Bottom-right corner
+    {"encounter": pygame.Rect(0, 0, 8, 5),"rect": pygame.Rect(0, 0, 9 * TILE_SIZE, 6 * TILE_SIZE), "tile": environments[regionGeneration[0]]},  # Top-left corner
+    {"encounter": pygame.Rect(12, 0, 9, 5),"rect": pygame.Rect(11 * TILE_SIZE, 0, 9 * TILE_SIZE, 6 * TILE_SIZE), "tile": environments[regionGeneration[1]]},  # Top-right corner
+    {"encounter": pygame.Rect(0, 9, 8, 6),"rect": pygame.Rect(0, 8 * TILE_SIZE, 9 * TILE_SIZE, 7 * TILE_SIZE), "tile": environments[regionGeneration[2]]},  # Bottom-left corner
+    {"encounter": pygame.Rect(12, 9, 8, 6),"rect": pygame.Rect(11 * TILE_SIZE, 8 * TILE_SIZE, 9 * TILE_SIZE, 7 * TILE_SIZE), "tile": environments[regionGeneration[3]]},  # Bottom-right corner
 ]
 
-remaining_environments = [env for env in environments if env not in regionGeneration]
+remaining_environments = [i for i in range(len(environments)) if i not in regionGeneration]
 
 # get pokedex for this level
 level_pokedex = []
@@ -195,7 +203,7 @@ for region in regionsForDrawing:
         elif region["tile"] == dragons_den_tile:
             level_pokedex += regions["dragons_den"]["pokemon"]
 
-# figur eout which corner is which
+# figure out which corner is which
 corners = []
 for region in regionsForDrawing:
     if region["tile"] == grass_tile:
@@ -339,9 +347,10 @@ rewards_display_time = 3000  # Time in milliseconds to display the rewards text
 rewards_start_time = None
 pokedex_completion = get_player_pokedex_completion(pokedex_complete, player)
 while running:
-    if not starter_selected:
+    if not starter_selected and len(player.pokemon_team) == 0:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                save_player_data(player, regionGeneration)
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 for button in starter_buttons:
@@ -362,6 +371,7 @@ while running:
             button.check_hover(mouse_pos)
         pygame.display.flip()
     else:
+        starter_selected = True
         # Reset the screen
         screen.fill(WHITE)
         
@@ -389,6 +399,7 @@ while running:
     # Handle events (such as closing the game window)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            save_player_data(player, regionGeneration)
             running = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
@@ -570,6 +581,7 @@ while running:
                 pc_pokemon_buttons = create_pc_pokemon_buttons(screen, player, SCREEN_WIDTH, page)
             #quit game if player closes and quits battle
             if winBattle == "quit":
+                save_player_data(player, regionGeneration)
                 running = False
                 break
             elif winBattle:

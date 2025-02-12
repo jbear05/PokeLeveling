@@ -1,6 +1,7 @@
 import requests
 import json
 import os
+from uuid import UUID
 
 # File path for the cache
 move_file = 'move_cache.json'
@@ -145,3 +146,26 @@ def get_pokemon_moves(pokemon_name):
     save_cache(cache, learnable_moves_file)
 
     return pokemon_info
+
+#save player data function
+def save_player_data(player, map_data):
+    def convert_uuid_to_str(data):
+        if isinstance(data, dict):
+            return {key: convert_uuid_to_str(value) for key, value in data.items()}
+        elif isinstance(data, list):
+            return [convert_uuid_to_str(item) for item in data]
+        elif isinstance(data, UUID):
+            return str(data)
+        else:
+            return data
+
+    data = {
+        "pokemon_team": [convert_uuid_to_str(pokemon.__dict__) for pokemon in player.pokemon_team],
+        "inventory": convert_uuid_to_str(player.inventory),
+        "pc": [convert_uuid_to_str(pokemon.__dict__) for pokemon in player.pc],
+        "regions": map_data
+    }
+    with open("player_data.json", "w") as file:
+        json.dump(data, file, indent=4)
+
+

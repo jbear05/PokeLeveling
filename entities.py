@@ -2,8 +2,10 @@ import random
 import pygame
 import copy
 import uuid
+from uuid import UUID
+import json
 from typings import pokemon_advantages, pokemon_disadvantages, pokemon_null
-from move_data import get_move_data, get_pokemon_stats, get_pokemon_moves
+from data import get_move_data, get_pokemon_stats, get_pokemon_moves
 #libraries for path
 import os
 import sys
@@ -56,15 +58,11 @@ def use(move, player_pokemon, opponent):
 player_pokemon_moves = {}
 
 class Pokemon:
-    def __init__(self, name, type, level, moves, exp = 0, status="none", is_wild=False, caught=False):
+    def __init__(self, name, type, level, moves = None, exp = 0, status="none", is_wild=False, caught=False, id = None, stats = None, current_health=None):
         self.name = name
-        self.id = uuid.uuid4()
         self.type = type
         self.level = level
-        self.base_stats = get_pokemon_stats(name.lower())  # A dictionary of base stats
-        self.stats = self.base_stats.copy() # A dictionary of base stats
-        self.current_health = self.stats['hp']  # Current health of the Pokémon
-        self.moves = [get_move_data(move) if move != 0 else get_move_data("pound") for move in moves ]  # A list of moves that the Pokémon can use
+        self.moves = [get_move_data(move['name']) if move != 0 else get_move_data("pound") for move in moves ] if isinstance(moves, dict) else [get_move_data(move) if move != 0 else get_move_data("pound") for move in moves ]  # A list of moves that the Pokémon can use
         self.learnable_moves = get_pokemon_moves(name.lower())
         self.learnable_moves = [get_move_data(move) for move in self.learnable_moves]
         self.exp = exp  # Experience points
@@ -72,6 +70,10 @@ class Pokemon:
         self.status = status
         self.is_wild = is_wild  # Identifier to differentiate between wild and player's Pokémon
         self.caught = caught  # Identifier to differentiate between caught or not
+        self.id = id if id is not None else uuid.uuid4()
+        self.base_stats = get_pokemon_stats(name.lower())  # A dictionary of base stats
+        self.stats = stats if stats is not None else self.base_stats.copy() # A dictionary of base stats
+        self.current_health = current_health if current_health is not None else self.stats['hp']  # Current health of the PokémonS
 
     def learn_move(self, move, screen):
         if len(self.moves) < 4:
@@ -172,6 +174,39 @@ class Pokemon:
         health_text = font.render(f"HP: {self.current_health}/{self.stats['hp']}", True, (0, 0, 0))
         screen.blit(name_text, (x, y))
         screen.blit(health_text, (x, y + 30))
+
+
+
+#load player data function
+def load_player_data(playerS):
+    def convert_str_to_uuid(data):
+        if isinstance(data, dict):
+            # Remove useless key if it exists
+            data.pop('base_stats', None)
+            data.pop('learnable_moves', None)
+            data.pop('max_exp', None)
+            return {key: convert_str_to_uuid(value) for key, value in data.items()}
+        elif isinstance(data, list):
+            return [convert_str_to_uuid(item) for item in data]
+        elif isinstance(data, str):
+            try:
+                return UUID(data)
+            except ValueError:
+                return data
+        else:
+            return data
+
+    try:
+        with open("player_data.json", "r") as file:
+            data = json.load(file)
+            player.pokemon_team = [Pokemon(**convert_str_to_uuid(pokemon)) for pokemon in data["pokemon_team"]]
+            player.inventory = convert_str_to_uuid(data["inventory"])
+            player.pc = [Pokemon(**convert_str_to_uuid(pokemon)) for pokemon in data["pc"]]
+
+            return True, data["regions"]
+
+    except FileNotFoundError:
+        return False, None
 
 class Player:
     def __init__(self, grid_x, grid_y, inventory={"pokeball":2, "super potion":2, "status heal":2, "pp restore":2}):
