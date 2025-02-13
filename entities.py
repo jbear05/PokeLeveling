@@ -203,10 +203,10 @@ def load_player_data(playerS):
             player.inventory = convert_str_to_uuid(data["inventory"])
             player.pc = [Pokemon(**convert_str_to_uuid(pokemon)) for pokemon in data["pc"]]
 
-            return True, data["regions"]
+            return True, data["regions"], data["region_pokedex"]
 
     except FileNotFoundError:
-        return False, None
+        return False, None, None
 
 class Player:
     def __init__(self, grid_x, grid_y, inventory={"pokeball":2, "super potion":2, "status heal":2, "pp restore":2}):

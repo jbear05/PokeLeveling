@@ -148,7 +148,7 @@ def get_pokemon_moves(pokemon_name):
     return pokemon_info
 
 #save player data function
-def save_player_data(player, map_data):
+def save_player_data(player, map_data, region_pokedex):
     def convert_uuid_to_str(data):
         if isinstance(data, dict):
             return {key: convert_uuid_to_str(value) for key, value in data.items()}
@@ -163,7 +163,8 @@ def save_player_data(player, map_data):
         "pokemon_team": [convert_uuid_to_str(pokemon.__dict__) for pokemon in player.pokemon_team],
         "inventory": convert_uuid_to_str(player.inventory),
         "pc": [convert_uuid_to_str(pokemon.__dict__) for pokemon in player.pc],
-        "regions": map_data
+        "regions": map_data,
+        "region_pokedex": region_pokedex
     }
     with open("player_data.json", "w") as file:
         json.dump(data, file, indent=4)

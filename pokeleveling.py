@@ -1,7 +1,7 @@
 """
 things to do:
 - make save data deleteable
-- save map data and level data
+- save level data
 - add legendary boss fights
 - add game level system
 - evolution system
@@ -140,24 +140,25 @@ clouds = ["Pidgey", "Spearow", "Farfetchd", "Doduo", "Hoothoot", "Taillow", "Sta
 swamp = ["Zubat", "Grimer", "Koffing", "Croagunk", "Trubbish", "Venipede", "Skorupi", "Stunky", "Nidoran-f", "Nidoran-m"]
 dragons_den = ["Dratini", "Bagon", "Axew", "Deino", "Druddigon"]
 
-regions = {
-    "grassland" : {"pokemon": random.sample(grassland, 5)},
-    "beach" : {"pokemon": random.sample(beach, 5)},
-    "volcano" : {"pokemon": random.sample(volcano, 5)},
-    "desert" : {"pokemon": random.sample(desert, 5)},
-    "snow" : {"pokemon": random.sample(snow, 5)},
-    "factory" : {"pokemon": random.sample(factory, 5)},
-    "graveyard" : {"pokemon": random.sample(graveyard, 5)},
-    "forest" : {"pokemon": random.sample(forest, 5)},
-    "dojo" : {"pokemon": random.sample(dojo, 5)},
-    "clouds" : {"pokemon": random.sample(clouds, 5)},
-    "swamp" : {"pokemon": random.sample(swamp, 5)},
-    "dragons_den" : {"pokemon": random.sample(dragons_den, 5)}
-}
-
-
 #load player data and map data
-data_retrieved, regionGeneration = load_player_data(player)
+data_retrieved, regionGeneration, regions = load_player_data(player)
+
+#generate region dex based on region data loaded
+if not regions:
+    regions = {
+        "grassland" : {"pokemon": random.sample(grassland, 5)},
+        "beach" : {"pokemon": random.sample(beach, 5)},
+        "volcano" : {"pokemon": random.sample(volcano, 5)},
+        "desert" : {"pokemon": random.sample(desert, 5)},
+        "snow" : {"pokemon": random.sample(snow, 5)},
+        "factory" : {"pokemon": random.sample(factory, 5)},
+        "graveyard" : {"pokemon": random.sample(graveyard, 5)},
+        "forest" : {"pokemon": random.sample(forest, 5)},
+        "dojo" : {"pokemon": random.sample(dojo, 5)},
+        "clouds" : {"pokemon": random.sample(clouds, 5)},
+        "swamp" : {"pokemon": random.sample(swamp, 5)},
+        "dragons_den" : {"pokemon": random.sample(dragons_den, 5)}
+    }
 
 #generate map depending on map data saved or not
 if not regionGeneration:
@@ -350,7 +351,7 @@ while running:
     if not starter_selected and len(player.pokemon_team) == 0:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                save_player_data(player, regionGeneration)
+                save_player_data(player, regionGeneration, regions)
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 for button in starter_buttons:
@@ -399,7 +400,7 @@ while running:
     # Handle events (such as closing the game window)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            save_player_data(player, regionGeneration)
+            save_player_data(player, regionGeneration, regions)
             running = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
@@ -581,7 +582,7 @@ while running:
                 pc_pokemon_buttons = create_pc_pokemon_buttons(screen, player, SCREEN_WIDTH, page)
             #quit game if player closes and quits battle
             if winBattle == "quit":
-                save_player_data(player, regionGeneration)
+                save_player_data(player, regionGeneration, regions)
                 running = False
                 break
             elif winBattle:

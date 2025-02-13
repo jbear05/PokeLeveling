@@ -3,7 +3,7 @@
         {
             "name": "Charmander",
             "type": "fire",
-            "level": 5,
+            "level": 6,
             "moves": [
                 {
                     "name": "tackle",
@@ -24,7 +24,7 @@
                     "name": "ember",
                     "power": 40,
                     "max_pp": 25,
-                    "pp": 25,
+                    "pp": 23,
                     "category": "special",
                     "type": "fire",
                     "crit_chance": 0,
@@ -1712,12 +1712,12 @@
                     "effect": "None"
                 }
             ],
-            "exp": 0,
-            "max_exp": 25,
+            "exp": 5,
+            "max_exp": 30,
             "status": "none",
             "is_wild": false,
             "caught": false,
-            "id": "dce164ab-55d9-4f24-aa8c-b117a4ba9d4a",
+            "id": "c5500962-f5c7-4d0c-84d5-6f345ee5dfee",
             "base_stats": {
                 "hp": 39,
                 "attack": 52,
@@ -1729,29 +1729,975 @@
                 "evasion": 100
             },
             "stats": {
-                "hp": 54,
-                "attack": 67,
-                "defense": 58,
-                "special-attack": 75,
-                "special-defense": 65,
-                "speed": 80,
+                "hp": 57,
+                "attack": 70,
+                "defense": 61,
+                "special-attack": 78,
+                "special-defense": 68,
+                "speed": 83,
                 "accuracy": 100,
                 "evasion": 100
             },
-            "current_health": 54
+            "current_health": 41
+        },
+        {
+            "name": "Vanillite",
+            "type": "ice",
+            "level": 7,
+            "moves": [
+                {
+                    "name": "icicle-spear",
+                    "power": 25,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "physical",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 2,
+                    "max_hits": 5,
+                    "effect": "Hits 2-5 times in one turn."
+                },
+                {
+                    "name": "powder-snow",
+                    "power": 40,
+                    "max_pp": 25,
+                    "pp": 23,
+                    "category": "special",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 10,
+                    "ailment": "freeze",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 10% chance to freeze the target."
+                }
+            ],
+            "learnable_moves": [
+                {
+                    "name": "mist",
+                    "power": 0,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "status",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Protects the user's stats from being changed by enemy moves."
+                },
+                {
+                    "name": "ice-beam",
+                    "power": 90,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "special",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 10,
+                    "ailment": "freeze",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 10% chance to freeze the target."
+                },
+                {
+                    "name": "blizzard",
+                    "power": 110,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "special",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 10,
+                    "ailment": "freeze",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 10% chance to freeze the target."
+                },
+                {
+                    "name": "toxic",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "poison",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "poison",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Badly poisons the target, inflicting more damage every turn."
+                },
+                {
+                    "name": "double-team",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "evasion",
+                                "url": "https://pokeapi.co/api/v2/stat/8/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the user's evasion by one stage."
+                },
+                {
+                    "name": "harden",
+                    "power": 0,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the user's Defense by one stage."
+                },
+                {
+                    "name": "light-screen",
+                    "power": 0,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "status",
+                    "type": "psychic",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Reduces damage from special attacks by 50% for five turns."
+                },
+                {
+                    "name": "self-destruct",
+                    "power": 200,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User faints."
+                },
+                {
+                    "name": "acid-armor",
+                    "power": 0,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "status",
+                    "type": "poison",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 2,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the user's Defense by two stages."
+                },
+                {
+                    "name": "explosion",
+                    "power": 250,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User faints."
+                },
+                {
+                    "name": "rest",
+                    "power": 0,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "status",
+                    "type": "psychic",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User sleeps for two turns, completely healing itself."
+                },
+                {
+                    "name": "substitute",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Transfers 1/4 of the user's max HP into a doll, protecting the user from further damage or status changes until it breaks."
+                },
+                {
+                    "name": "snore",
+                    "power": 50,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to make the target flinch.  Only works if the user is sleeping."
+                },
+                {
+                    "name": "powder-snow",
+                    "power": 40,
+                    "max_pp": 25,
+                    "pp": 25,
+                    "category": "special",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 10,
+                    "ailment": "freeze",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 10% chance to freeze the target."
+                },
+                {
+                    "name": "protect",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Prevents any moves from hitting the user this turn."
+                },
+                {
+                    "name": "icy-wind",
+                    "power": 55,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "speed",
+                                "url": "https://pokeapi.co/api/v2/stat/6/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 100% chance to lower the target's Speed by one stage."
+                },
+                {
+                    "name": "endure",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Prevents the user's HP from lowering below 1 this turn."
+                },
+                {
+                    "name": "swagger",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "confusion",
+                    "stat_changes": [
+                        {
+                            "change": 2,
+                            "stat": {
+                                "name": "attack",
+                                "url": "https://pokeapi.co/api/v2/stat/2/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the target's Attack by two stages and confuses the target."
+                },
+                {
+                    "name": "sleep-talk",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Randomly uses one of the user's other three moves.  Only works if the user is sleeping."
+                },
+                {
+                    "name": "hidden-power",
+                    "power": 60,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Power and type depend upon user's IVs.  Power can range from 30 to 70."
+                },
+                {
+                    "name": "rain-dance",
+                    "power": 0,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "status",
+                    "type": "water",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Changes the weather to rain for five turns."
+                },
+                {
+                    "name": "uproar",
+                    "power": 90,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Forced to use this move for several turns.  Pok\u00e9mon cannot fall asleep in that time."
+                },
+                {
+                    "name": "hail",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Changes the weather to a hailstorm for five turns."
+                },
+                {
+                    "name": "facade",
+                    "power": 70,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Power doubles if user is burned, paralyzed, or poisoned."
+                },
+                {
+                    "name": "taunt",
+                    "power": 0,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "status",
+                    "type": "dark",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "For the next few turns, the target can only use damaging moves."
+                },
+                {
+                    "name": "magic-coat",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "psychic",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Reflects back the first effect move used on the user this turn."
+                },
+                {
+                    "name": "imprison",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "psychic",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Prevents the target from using any moves that the user also knows."
+                },
+                {
+                    "name": "secret-power",
+                    "power": 70,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to inflict a status effect which depends upon the terrain."
+                },
+                {
+                    "name": "hyper-voice",
+                    "power": 90,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "astonish",
+                    "power": 30,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "ghost",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to make the target flinch."
+                },
+                {
+                    "name": "signal-beam",
+                    "power": 75,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "bug",
+                    "crit_chance": 0,
+                    "effect_chance": 10,
+                    "ailment": "confusion",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 10% chance to confuse the target."
+                },
+                {
+                    "name": "icicle-spear",
+                    "power": 25,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "physical",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 2,
+                    "max_hits": 5,
+                    "effect": "Hits 2-5 times in one turn."
+                },
+                {
+                    "name": "iron-defense",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "steel",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 2,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the user's Defense by two stages."
+                },
+                {
+                    "name": "water-pulse",
+                    "power": 60,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "special",
+                    "type": "water",
+                    "crit_chance": 0,
+                    "effect_chance": 20,
+                    "ailment": "confusion",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 20% chance to confuse the target."
+                },
+                {
+                    "name": "magnet-rise",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "electric",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User is immune to Ground moves and effects for five turns."
+                },
+                {
+                    "name": "avalanche",
+                    "power": 60,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts double damage if the user takes damage before attacking this turn."
+                },
+                {
+                    "name": "ice-shard",
+                    "power": 40,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "physical",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "mirror-shot",
+                    "power": 65,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "special",
+                    "type": "steel",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "accuracy",
+                                "url": "https://pokeapi.co/api/v2/stat/7/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to lower the target's accuracy by one stage."
+                },
+                {
+                    "name": "flash-cannon",
+                    "power": 80,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "special",
+                    "type": "steel",
+                    "crit_chance": 0,
+                    "effect_chance": 10,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "special-defense",
+                                "url": "https://pokeapi.co/api/v2/stat/5/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 10% chance to lower the target's Special Defense by one stage."
+                },
+                {
+                    "name": "autotomize",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "steel",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 2,
+                            "stat": {
+                                "name": "speed",
+                                "url": "https://pokeapi.co/api/v2/stat/6/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the user's Speed by two stages and halves the user's weight."
+                },
+                {
+                    "name": "round",
+                    "power": 60,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has double power if it's used more than once per turn."
+                },
+                {
+                    "name": "ally-switch",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "psychic",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User switches places with the friendly Pok\u00e9mon opposite it."
+                },
+                {
+                    "name": "frost-breath",
+                    "power": 60,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "special",
+                    "type": "ice",
+                    "crit_chance": 6,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Always scores a critical hit."
+                },
+                {
+                    "name": "icicle-crash",
+                    "power": 85,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to make the target flinch."
+                },
+                {
+                    "name": "confide",
+                    "power": 0,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "special-attack",
+                                "url": "https://pokeapi.co/api/v2/stat/4/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Lowers the target's Special Attack by one stage."
+                },
+                {
+                    "name": "aurora-veil",
+                    "power": 0,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "status",
+                    "type": "ice",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Reduces damage five turns, but must be used during hail."
+                }
+            ],
+            "exp": 0,
+            "max_exp": 35,
+            "status": "none",
+            "is_wild": false,
+            "caught": false,
+            "id": "75cdd61f-54af-4a70-bb31-bbcbc403fe0d",
+            "base_stats": {
+                "hp": 36,
+                "attack": 50,
+                "defense": 50,
+                "special-attack": 65,
+                "special-defense": 60,
+                "speed": 44,
+                "accuracy": 100,
+                "evasion": 100
+            },
+            "stats": {
+                "hp": 57,
+                "attack": 71,
+                "defense": 71,
+                "special-attack": 86,
+                "special-defense": 81,
+                "speed": 65,
+                "accuracy": 100,
+                "evasion": 100
+            },
+            "current_health": 57
         }
     ],
     "inventory": {
         "pokeball": 2,
-        "super potion": 2,
-        "status heal": 2,
-        "pp restore": 2
+        "super potion": 3,
+        "status heal": 3,
+        "pp restore": 3
     },
     "pc": [],
     "regions": [
-        11,
-        9,
         5,
-        7
-    ]
+        4,
+        0,
+        10
+    ],
+    "region_pokedex": {
+        "grassland": {
+            "pokemon": [
+                "Jigglypuff",
+                "Slakoth",
+                "Bellsprout",
+                "Oddish",
+                "Eevee"
+            ]
+        },
+        "beach": {
+            "pokemon": [
+                "Slowpoke",
+                "Tentacool",
+                "Sandygast",
+                "Totodile",
+                "Psyduck"
+            ]
+        },
+        "volcano": {
+            "pokemon": [
+                "Houndour",
+                "Slugma",
+                "Vulpix",
+                "Rolycoly",
+                "Magby"
+            ]
+        },
+        "desert": {
+            "pokemon": [
+                "Geodude",
+                "Roggenrola",
+                "Nosepass",
+                "Larvitar",
+                "Sandile"
+            ]
+        },
+        "snow": {
+            "pokemon": [
+                "Spheal",
+                "Sneasel",
+                "Delibird",
+                "Vanillite",
+                "Bergmite"
+            ]
+        },
+        "factory": {
+            "pokemon": [
+                "Beldum",
+                "Honedge",
+                "Magnemite",
+                "Rotom",
+                "Pawniard"
+            ]
+        },
+        "graveyard": {
+            "pokemon": [
+                "Spiritomb",
+                "Drifloon",
+                "Shuppet",
+                "Misdreavus",
+                "Sableye"
+            ]
+        },
+        "forest": {
+            "pokemon": [
+                "Kricketot",
+                "Paras",
+                "Caterpie",
+                "Shelmet",
+                "Venonat"
+            ]
+        },
+        "dojo": {
+            "pokemon": [
+                "Throh",
+                "Hitmontop",
+                "Hitmonchan",
+                "Mankey",
+                "Makuhita"
+            ]
+        },
+        "clouds": {
+            "pokemon": [
+                "Pidove",
+                "Pidgey",
+                "Swablu",
+                "Farfetchd",
+                "Aerodactyl"
+            ]
+        },
+        "swamp": {
+            "pokemon": [
+                "Koffing",
+                "Stunky",
+                "Nidoran-m",
+                "Trubbish",
+                "Skorupi"
+            ]
+        },
+        "dragons_den": {
+            "pokemon": [
+                "Deino",
+                "Dratini",
+                "Bagon",
+                "Druddigon",
+                "Axew"
+            ]
+        }
+    }
 }
