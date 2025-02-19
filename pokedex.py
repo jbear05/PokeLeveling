@@ -1,6 +1,8 @@
 from entities import Pokemon
 import random
 
+eevolution = random.choice(["Vaporeon", "Jolteon", "Flareon", "Espeon", "Umbreon", "Leafeon", "Glaceon", "Sylveon"])
+
 pokedex = {
     # Electric type Pokémon
     "Pikachu": Pokemon("Pikachu", "electric", 5, ["quick-attack", "thunder-shock"], "Raichu", 20),
@@ -71,9 +73,7 @@ pokedex = {
 
     "Magcargo": Pokemon("Magcargo", "fire", 1, ["tackle", "ember"]),
     
-    "Darumaka": Pokemon("Darumaka", "fire", 5, ["scratch", "ember"], "Darmanitan", 35),
-
-    "Darmanitan": Pokemon("Darmanitan", "fire", 1, ["scratch", "ember"]),
+    "Darumaka": Pokemon("Darumaka", "fire", 5, ["scratch", "ember"]),
     
     "Rolycoly": Pokemon("Rolycoly", "fire", 5, ["scratch", "ember"], "Carkol", 18),
 
@@ -147,7 +147,7 @@ pokedex = {
     "Empoleon": Pokemon("Empoleon", "water", 1, ["scratch", "bubble"]),
 
     # Normal type Pokémon
-    "Eevee": Pokemon("Eevee", "normal", 5, ["tackle", "swift"], random.choice["Vaporeon", "Jolteon", "Flareon", "Espeon", "Umbreon", "Leafeon", "Glaceon", "Sylveon"], 20),
+    "Eevee": Pokemon("Eevee", "normal", 5, ["tackle", "swift"], eevolution, 20),
     
     "Jigglypuff": Pokemon("Jigglypuff", "normal", 5, ["tackle", "sing"], "Wigglytuff", 30),
 
@@ -293,9 +293,7 @@ pokedex = {
     
     "Honedge": Pokemon("Honedge", "steel", 5, ["tackle", "swords-dance"], "Doublade", 35),
 
-    "Doublade": Pokemon("Doublade", "steel", 1, ["tackle", "swords-dance"], "Aegislash", 45),
-
-    "Aegislash": Pokemon("Aegislash", "steel", 1, ["tackle", "swords-dance"]),
+    "Doublade": Pokemon("Doublade", "steel", 1, ["tackle", "swords-dance"]),
     
     "Klefki": Pokemon("Klefki", "steel", 5, ["tackle", "fairy-lock"]),
     
@@ -336,9 +334,9 @@ pokedex = {
 
     "Kricketune": Pokemon("Kricketune", "bug", 1, ["bide", "growl"]),
     
-    "Burmy": Pokemon("Burmy", "bug", 5, ["protect", "tackle"], "Wormadam", 20),
+    "Burmy": Pokemon("Burmy", "bug", 5, ["protect", "tackle"], "Mothim", 20),
 
-    "Wormadam": Pokemon("Wormadam", "bug", 1, ["protect", "tackle"]),
+    "Mothim": Pokemon("Mothim", "bug", 1, ["protect", "tackle"]),
     
     "Sewaddle": Pokemon("Sewaddle", "bug", 5, ["tackle", "string-shot"], "Swadloon", 20),
 

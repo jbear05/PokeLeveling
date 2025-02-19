@@ -439,16 +439,10 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                 while player_pokemon.exp >= player_pokemon.max_exp:
                     player_pokemon.level_up()
                     battle_text += f" {player_pokemon.name} leveled up to level {player_pokemon.level}!"
-                    if player_pokemon.evolution is not None and player_pokemon.level == player_pokemon.evolution_level:
+                    if player_pokemon.evolution is not None and player_pokemon.level < player_pokemon.evolution_level:
                         exp_added = True
-                        current_name = player_pokemon.name
                         player_pokemon.evolved = True
-                        # known_moves = player_pokemon.moves
-                        # current_level = player_pokemon.level
-                        # player_pokemon = pokedex[player_pokemon.evolution]
-                        # player_pokemon.moves = known_moves
-                        # player_pokemon.level = current_level
-                        evolution_text = f"{current_name} evolved into {player_pokemon.name}!"
+                        evolution_text = f"{player_pokemon.name} evolved into {player_pokemon.evolution}!"
                         break
 
                     if max(1, (player_pokemon.level - 5)) % 3 == 0:

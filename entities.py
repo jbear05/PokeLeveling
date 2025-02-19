@@ -280,7 +280,7 @@ class Player:
         if wild_pokemon.status != None:
             catch_chance += 0.1
         if random.random() < catch_chance:
-            new_pokemon = Pokemon(wild_pokemon.name, wild_pokemon.type, wild_pokemon.level, wild_pokemon.moves)
+            new_pokemon = Pokemon(wild_pokemon.name, wild_pokemon.type, wild_pokemon.level, wild_pokemon.moves, wild_pokemon.evolution, wild_pokemon.evolution_level)
             new_pokemon.update_stats()
             new_pokemon.is_wild = False
             if len(self.pokemon_team) < 6:

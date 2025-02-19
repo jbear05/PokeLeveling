@@ -1,5 +1,7 @@
 """
 things to do:
+- some pokemon not evolving
+- pokedex counting doubles
 - battle start screen to give time to load
 - make save data deleteable
 - save level data
@@ -576,7 +578,7 @@ while running:
                 lvlDiff = random.randint(-3, 2)
                 environment = (regionsForDrawing[i]["tile"] for i in range(len(regionsForDrawing)) if regionsForDrawing[i]["rect"].collidepoint(player.grid_x * TILE_SIZE, player.grid_y * TILE_SIZE)).__next__()
                 battle_stage = (i + 1 for i in range(len(environments)) if environments[i] == environment).__next__()
-                winBattle = battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, battle_stage, player.pokemon_team[0], Pokemon(opponent_pokemon.name, opponent_pokemon.type, max(1, player.pokemon_team[0].level + lvlDiff), opponent_pokemon.moves, is_wild=True))
+                winBattle = battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, battle_stage, player.pokemon_team[0], Pokemon(opponent_pokemon.name, opponent_pokemon.type, max(1, player.pokemon_team[0].level + lvlDiff), opponent_pokemon.moves, opponent_pokemon.evolution, opponent_pokemon.evolution_level, is_wild=True))
                 pokemon_buttons = create_pokemon_buttons(screen)
                 item_buttons = create_item_buttons(player, screen, SCREEN_WIDTH)
                 pc_pokemon_buttons = create_pc_pokemon_buttons(screen, player, SCREEN_WIDTH, page)
