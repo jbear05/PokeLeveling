@@ -104,6 +104,7 @@ def get_pokemon_stats(pokemon_name):
         pokemon_info[stat_name] = stat_value
     pokemon_info["accuracy"] = 100
     pokemon_info["evasion"] = 100
+    pokemon_info["id"] = pokemon_data["id"]
 
     # Cache the move data
     cache[pokemon_name] = pokemon_info
@@ -159,10 +160,25 @@ def save_player_data(player, map_data, region_pokedex):
         else:
             return data
 
+    def remove_non_serializable(data):
+        if isinstance(data, dict):
+            return {key: remove_non_serializable(value) for key, value in data.items() if is_serializable(value)}
+        elif isinstance(data, list):
+            return [remove_non_serializable(item) for item in data if is_serializable(item)]
+        else:
+            return data
+
+    def is_serializable(value):
+        try:
+            json.dumps(value)
+            return True
+        except (TypeError, OverflowError):
+            return False
+
     data = {
-        "pokemon_team": [convert_uuid_to_str(pokemon.__dict__) for pokemon in player.pokemon_team],
-        "inventory": convert_uuid_to_str(player.inventory),
-        "pc": [convert_uuid_to_str(pokemon.__dict__) for pokemon in player.pc],
+        "pokemon_team": [remove_non_serializable(convert_uuid_to_str(pokemon.__dict__)) for pokemon in player.pokemon_team],
+        "inventory": remove_non_serializable(convert_uuid_to_str(player.inventory)),
+        "pc": [remove_non_serializable(convert_uuid_to_str(pokemon.__dict__)) for pokemon in player.pc],
         "regions": map_data,
         "region_pokedex": region_pokedex
     }

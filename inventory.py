@@ -1,6 +1,8 @@
 import pygame
 import copy
 import math
+import requests
+from io import BytesIO
 from entities import Pokemon, Player, player, player_pokemon_moves, create_path
 from battle import Button, Item
 
@@ -71,10 +73,8 @@ def create_pokemon_buttons(screen):
             player_pokemon_moves[pokemon.id] = copy.deepcopy(pokemon.moves)
         pokemon_buttons.append(Button(450, 130 + 70 * i, 260, 50, f"{pokemon.name} - LV: {pokemon.level} - HP: {pokemon.current_health}/{pokemon.stats['hp']}",  font, (50, 130, 217), WHITE, lambda pokemon=pokemon: get_pokemon(pokemon.id, player_pokemon_moves[pokemon.id]), BLACK))
 
-        # Load Pokémon images
-        pokemon_image = pygame.image.load(create_path(f'Assets\Pokemon\{pokemon.name}.png'))
         # Scale the Pokémon images
-        pokemon_image = pygame.transform.scale(pokemon_image, (80, 80))  # Scale to 100x100 pixels
+        pokemon_image = pygame.transform.scale(pokemon.image, (80, 80))  # Scale to 100x100 pixels
         pokemon_image_rect = pokemon_image.get_rect(midtop=(750, pokemon_buttons[i].y - 15))
         pokemon_images.append((pokemon_image, pokemon_image_rect))
     
@@ -117,10 +117,9 @@ def create_pc_pokemon_buttons(screen, player, SCREEN_WIDTH, page):
     for i, pokemon in enumerate(player.pc[page * 21:(page + 1) * 21]):
         pokemon.update_stats()
         pc_pokemon_buttons.append(Button(SCREEN_WIDTH // 12 + 260 * math.floor((i) / 7), 50 + 70 * (i - (7 * math.floor(i/7))), 200, 50, f"{pokemon.name} - LV:{pokemon.level} - HP:{pokemon.current_health}/{pokemon.stats['hp']}", font, (DARK_GREEN if pokemon.current_health > 0 else DARK_RED), WHITE, lambda pokemon=pokemon: move_pokemon_to_team(player, pokemon), BLACK))
-        # Load Pokémon images
-        pc_pokemon_image = pygame.image.load(create_path(f'Assets\Pokemon\{pokemon.name}.png'))
+
         # Scale the Pokémon images
-        pc_pokemon_image = pygame.transform.scale(pc_pokemon_image, (64, 64))  # Scale to 100x100 pixels
+        pc_pokemon_image = pygame.transform.scale(pokemon.image, (64, 64))  # Scale to 100x100 pixels
         pc_pokemon_image_rect = pc_pokemon_image.get_rect(midtop=(pc_pokemon_buttons[i].x - 30, pc_pokemon_buttons[i].y - 5))
         pc_pokemon_images.append((pc_pokemon_image, pc_pokemon_image_rect))
     return pc_pokemon_buttons

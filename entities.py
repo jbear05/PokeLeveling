@@ -4,6 +4,8 @@ import copy
 import uuid
 from uuid import UUID
 import json
+import requests
+from io import BytesIO
 from typings import pokemon_advantages, pokemon_disadvantages, pokemon_null
 from data import get_move_data, get_pokemon_stats, get_pokemon_moves
 #libraries for path
@@ -58,11 +60,14 @@ def use(move, player_pokemon, opponent):
 player_pokemon_moves = {}
 
 class Pokemon:
-    def __init__(self, name, type, level, moves = None, exp = 0, status="none", is_wild=False, caught=False, id = None, stats = None, current_health=None):
+    def __init__(self, name, type, level, moves = [], evolution = None, evolution_level = None, exp = 0, status="none", is_wild=False, caught=False, id = None, stats = None, current_health=None):
         self.name = name
         self.type = type
         self.level = level
         self.moves = [get_move_data(move['name']) if move != 0 else get_move_data("pound") for move in moves ] if isinstance(moves, dict) else [get_move_data(move) if move != 0 else get_move_data("pound") for move in moves ]  # A list of moves that the Pokémon can use
+        self.evolution = evolution
+        self.evolution_level = evolution_level
+        self.evolved = False
         self.learnable_moves = get_pokemon_moves(name.lower())
         self.learnable_moves = [get_move_data(move) for move in self.learnable_moves]
         self.exp = exp  # Experience points
@@ -74,6 +79,7 @@ class Pokemon:
         self.base_stats = get_pokemon_stats(name.lower())  # A dictionary of base stats
         self.stats = stats if stats is not None else self.base_stats.copy() # A dictionary of base stats
         self.current_health = current_health if current_health is not None else self.stats['hp']  # Current health of the PokémonS
+        self.image = pygame.image.load(BytesIO(requests.get(f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{self.stats["id"]}.png").content))
 
     def learn_move(self, move, screen):
         if len(self.moves) < 4:
@@ -185,6 +191,8 @@ def load_player_data(playerS):
             data.pop('base_stats', None)
             data.pop('learnable_moves', None)
             data.pop('max_exp', None)
+            data.pop('evolved', None)
+            data.pop('image', None)
             return {key: convert_str_to_uuid(value) for key, value in data.items()}
         elif isinstance(data, list):
             return [convert_str_to_uuid(item) for item in data]

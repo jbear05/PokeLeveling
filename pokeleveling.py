@@ -1,5 +1,6 @@
 """
 things to do:
+- battle start screen to give time to load
 - make save data deleteable
 - save level data
 - add legendary boss fights
@@ -11,15 +12,8 @@ things to do:
 
 
 import pygame
-import random
-from entities import Pokemon, Player, player, create_path, load_player_data
-from battle import battle, Item, Button
-from inventory import display_buttons, create_item_buttons, create_pokemon_buttons, display_pokemon_buttons, create_pc_pokemon_buttons, display_pc_pokemon_buttons, move_pokemon_to_pc
-from data import save_player_data
-
 
 pygame.init()
-
 # Constants
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -50,14 +44,6 @@ DARK_BROWN = (139, 69, 19)
 DARK_GRAY = (169, 169, 169)
 GRAY = (128, 128, 128)
 LIGHT_GRAY = (211, 211, 211)
-
-#generate map
-def generate_map(width, height):
-    # 0 represents empty space, 1 represents walls
-    map_data = [[random.choice([0, 1]) for _ in range(width)] for _ in range(height)]
-    return map_data
-
-
 # Set up the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("PokeLeveling")
@@ -69,6 +55,20 @@ loading_text = font.render("Loading...", True, BLACK)
 loading_rect = loading_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
 screen.blit(loading_text, loading_rect)
 pygame.display.flip()
+
+import random
+from entities import Pokemon, Player, player, create_path, load_player_data
+from battle import battle, Item, Button
+from inventory import display_buttons, create_item_buttons, create_pokemon_buttons, display_pokemon_buttons, create_pc_pokemon_buttons, display_pc_pokemon_buttons, move_pokemon_to_pc
+from data import save_player_data
+
+
+#generate map
+def generate_map(width, height):
+    # 0 represents empty space, 1 represents walls
+    map_data = [[random.choice([0, 1]) for _ in range(width)] for _ in range(height)]
+    return map_data
+
 
 # Update the screen periodically
 pygame.time.set_timer(pygame.USEREVENT, 100)  # Set a timer for 100 milliseconds
@@ -587,6 +587,17 @@ while running:
                 break
             elif winBattle:
                 # get player known pokedex
+                for i, pokemon in enumerate(player.pokemon_team):
+                    if pokemon.evolved:
+                        known_moves = pokemon.moves
+                        current_level = pokemon.level
+                        health_diff = pokemon.stats["hp"] - pokemon.current_health
+                        player.pokemon_team[i] = pokedex[pokemon.evolution]
+                        player.pokemon_team[i].moves = known_moves
+                        player.pokemon_team[i].level = current_level
+                        player.pokemon_team[i].current_health -= health_diff
+                        pokemon_buttons = create_pokemon_buttons(screen)
+
                 pokedex_completion = get_player_pokedex_completion(pokedex_complete, player)
                     
                 for pokemon in level_pokedex:

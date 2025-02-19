@@ -2,8 +2,11 @@ import pygame
 import time
 import random
 import copy
+import requests
+from io import BytesIO
 from entities import Pokemon, Player, player, player_pokemon_moves, create_path
 from typings import pokemon_disadvantages, pokemon_null, pokemon_advantages
+from pokedex import pokedex
 
 
 # Colors
@@ -172,15 +175,11 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
     #Scale the stage
     stage = pygame.transform.scale(stage, (width, height))
 
-
-    # Load Pokémon images
-    player_pokemon_image = pygame.image.load(create_path(f'Assets\Pokemon\{player_pokemon.name}.png'))
-    opponent_pokemon_image = pygame.image.load(create_path(f'Assets\Pokemon\{opponent_pokemon.name}.png'))
     caught_image = pygame.image.load(create_path('Assets\Battle\caught_sign.png'))
 
     # Scale the Pokémon images
-    player_pokemon_image = pygame.transform.scale(player_pokemon_image, (100, 100))  # Scale to 100x100 pixels
-    opponent_pokemon_image = pygame.transform.scale(opponent_pokemon_image, (100, 100))  # Scale to 100x100 pixels
+    player_pokemon_image = pygame.transform.scale(player_pokemon.image, (100, 100))  # Scale to 100x100 pixels
+    opponent_pokemon_image = pygame.transform.scale(opponent_pokemon.image, (100, 100))  # Scale to 100x100 pixels
 
      # Define the positions for the health bars
     player_health_bar_rect = pygame.Rect(50, 100, 200, 20)
@@ -258,6 +257,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
     battle_text = f"{player_pokemon.name}'s turn!" if state == PLAYER_TURN else f"{opponent_pokemon.name}'s turn!"
     
     new_move_text = None
+    evolution_text = None
     replacing_move = False
     dont_learn_move_button = Button(270, 310, 200, 50, "No",  font, GRAY, BLACK, lambda: False, BLACK)
     exp_added = False
@@ -358,6 +358,9 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
             if new_move_text:
                 battle_text = new_move_text
                 continue
+            elif evolution_text:
+                battle_text = evolution_text
+                continue
             else:
                 battle_over = True
                 continue
@@ -373,6 +376,9 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
             else:
                 new_move_text = None
                 continue
+        elif battle_text == evolution_text:
+            evolution_text = None
+            continue
         elif battle_text == f"{player_pokemon.name} learned {player_pokemon.learnable_moves[0]['name']}!":
             pygame.time.delay(1000)
             player_pokemon.learnable_moves.pop(0)
@@ -392,8 +398,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
         elif battle_text == f"{player_pokemon.name} fainted!":
             pygame.time.delay(1000)
             player_pokemon = player.choose_pokemon(0)
-            player_pokemon_image = pygame.image.load(create_path(f'Assets\Pokemon\{player_pokemon.name}.png'))
-            player_pokemon_image = pygame.transform.scale(player_pokemon_image, (100, 100))  # Scale to 100x100 pixels
+            player_pokemon_image = pygame.transform.scale(player_pokemon.image, (100, 100))  # Scale to 100x100 pixels
             battle_text = f"{player_pokemon.name} is ready to fight!"
             continue
         elif battle_text == f"{player_pokemon.name} is ready to fight!":
@@ -434,6 +439,18 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                 while player_pokemon.exp >= player_pokemon.max_exp:
                     player_pokemon.level_up()
                     battle_text += f" {player_pokemon.name} leveled up to level {player_pokemon.level}!"
+                    if player_pokemon.evolution is not None and player_pokemon.level == player_pokemon.evolution_level:
+                        exp_added = True
+                        current_name = player_pokemon.name
+                        player_pokemon.evolved = True
+                        # known_moves = player_pokemon.moves
+                        # current_level = player_pokemon.level
+                        # player_pokemon = pokedex[player_pokemon.evolution]
+                        # player_pokemon.moves = known_moves
+                        # player_pokemon.level = current_level
+                        evolution_text = f"{current_name} evolved into {player_pokemon.name}!"
+                        break
+
                     if max(1, (player_pokemon.level - 5)) % 3 == 0:
                         exp_added = True #variable to check if exp has been added
                         new_move_text = player_pokemon.learn_move(player_pokemon.learnable_moves[0], screen)
@@ -616,8 +633,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                                 if player_pokemon.id != pokemon_choice.id:
                                     battle_text = f"Player switched to {pokemon_choice.name}!"
                                     player_pokemon = pokemon_choice
-                                    player_pokemon_image = pygame.image.load(create_path(f'Assets\Pokemon\{player_pokemon.name}.png'))
-                                    player_pokemon_image = pygame.transform.scale(player_pokemon_image, (100, 100))  # Scale to 100x100 pixels
+                                    player_pokemon_image = pygame.transform.scale(player_pokemon.image, (100, 100))  # Scale to 100x100 pixels
                                     showing_pokemon = False
                                     state = PLAYER_MOVE
                             pygame.time.set_timer(pygame.USEREVENT, 2000)  # Set a timer for 2 seconds

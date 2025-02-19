@@ -24,7 +24,9 @@ pokedex = {
     "Shroomish": Pokemon("Shroomish", "grass", 5, ["absorb", "tackle"]),
 
     # Fire type Pokémon
-    "Charmander": Pokemon("Charmander", "fire", 5, ["tackle", "ember"]),
+    "Charmander": Pokemon("Charmander", "fire", 5, ["tackle", "ember"], "Charmeleon", 6),
+
+    "Charmeleon": Pokemon("Charmeleon", "fire", 1, ["tackle", "ember"], "Charizard", 36),
     
     "Magby": Pokemon("Magby", "fire", 5, ["tackle", "ember"]),
     
