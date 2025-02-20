@@ -1,7 +1,5 @@
 """
 things to do:
-- some pokemon not evolving
-- pokedex counting doubles
 - battle start screen to give time to load
 - make save data deleteable
 - save level data
@@ -285,14 +283,14 @@ def get_region_pokemon(player_x, player_y):
                 return regions["dragons_den"]["pokemon"]
     return []  # Default to an empty list if no region matches
 
-def get_player_pokedex_completion(pokedex_complete, player):
-    pokedex_completion = 0
+pokedex_completion = 0
+def get_player_pokedex_completion(pokedex_completion, player):
     for pokemon in set(player.pokemon_team):
-        if pokemon.name in level_pokedex:
+        if pokemon.name in level_pokedex and not pokedex[pokemon.name].caught:
             pokedex_completion += 1
             pokedex[pokemon.name].caught = True
     for pokemon in set(player.pc):
-        if pokemon.name in level_pokedex:
+        if pokemon.name in level_pokedex and not pokedex[pokemon.name].caught:
             pokedex_completion += 1
             pokedex[pokemon.name].caught = True
 
@@ -348,7 +346,7 @@ pc_description = "Move pokemon to team"
 winBattle = False
 rewards_display_time = 3000  # Time in milliseconds to display the rewards text
 rewards_start_time = None
-pokedex_completion = get_player_pokedex_completion(pokedex_complete, player)
+pokedex_completion = get_player_pokedex_completion(pokedex_completion, player)
 while running:
     if not starter_selected and len(player.pokemon_team) == 0:
         for event in pygame.event.get():
@@ -600,7 +598,7 @@ while running:
                         player.pokemon_team[i].current_health -= health_diff
                         pokemon_buttons = create_pokemon_buttons(screen)
 
-                pokedex_completion = get_player_pokedex_completion(pokedex_complete, player)
+                pokedex_completion = get_player_pokedex_completion(pokedex_completion, player)
                     
                 for pokemon in level_pokedex:
                     if not pokedex[pokemon].caught:

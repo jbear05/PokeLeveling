@@ -1,15 +1,15 @@
 {
     "pokemon_team": [
         {
-            "name": "Shelgon",
+            "name": "Salamence",
             "type": "dragon",
-            "level": 4,
+            "level": 6,
             "moves": [
                 {
                     "name": "rage",
                     "power": 20,
                     "max_pp": 20,
-                    "pp": 20,
+                    "pp": 19,
                     "category": "physical",
                     "type": "normal",
                     "crit_chance": 0,
@@ -24,7 +24,7 @@
                     "name": "bite",
                     "power": 60,
                     "max_pp": 25,
-                    "pp": 7,
+                    "pp": 0,
                     "category": "physical",
                     "type": "dark",
                     "crit_chance": 0,
@@ -36,8 +36,8 @@
                     "effect": "Has a 30% chance to make the target flinch."
                 }
             ],
-            "evolution": "Salamence",
-            "evolution_level": 50,
+            "evolution": null,
+            "evolution_level": null,
             "evolved": false,
             "learnable_moves": [
                 {
@@ -54,6 +54,21 @@
                     "min_hits": 1,
                     "max_hits": 1,
                     "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "fly",
+                    "power": 90,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "flying",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User flies high into the air, dodging all attacks, and hits next turn."
                 },
                 {
                     "name": "headbutt",
@@ -214,6 +229,21 @@
                     "effect": "Inflicts regular damage with no additional effect."
                 },
                 {
+                    "name": "hyper-beam",
+                    "power": 150,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User foregoes its next turn to recharge."
+                },
+                {
                     "name": "strength",
                     "power": 80,
                     "max_pp": 15,
@@ -242,6 +272,21 @@
                     "min_hits": 1,
                     "max_hits": 1,
                     "effect": "Prevents the target from fleeing and inflicts damage for 2-5 turns."
+                },
+                {
+                    "name": "earthquake",
+                    "power": 100,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "ground",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage and can hit Dig users."
                 },
                 {
                     "name": "toxic",
@@ -363,6 +408,21 @@
                     "min_hits": 1,
                     "max_hits": 1,
                     "effect": "Has a 10% chance to burn the target."
+                },
+                {
+                    "name": "swift",
+                    "power": 60,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Never misses."
                 },
                 {
                     "name": "rest",
@@ -569,6 +629,29 @@
                     "effect": "Power doubles every turn this move is used in succession after the first, maxing out after five turns."
                 },
                 {
+                    "name": "steel-wing",
+                    "power": 70,
+                    "max_pp": 25,
+                    "pp": 25,
+                    "category": "physical",
+                    "type": "steel",
+                    "crit_chance": 0,
+                    "effect_chance": 10,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 10% chance to raise the user's Defense by one stage."
+                },
+                {
                     "name": "sleep-talk",
                     "power": 0,
                     "max_pp": 10,
@@ -597,6 +680,29 @@
                     "min_hits": 1,
                     "max_hits": 1,
                     "effect": "Has a 30% chance to paralyze the target."
+                },
+                {
+                    "name": "iron-tail",
+                    "power": 100,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "steel",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to lower the target's Defense by one stage."
                 },
                 {
                     "name": "hidden-power",
@@ -705,6 +811,21 @@
                     "effect": "Has a 50% chance to lower the target's Defense by one stage."
                 },
                 {
+                    "name": "heat-wave",
+                    "power": 95,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "special",
+                    "type": "fire",
+                    "crit_chance": 0,
+                    "effect_chance": 10,
+                    "ailment": "burn",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 10% chance to burn the target."
+                },
+                {
                     "name": "facade",
                     "power": 70,
                     "max_pp": 20,
@@ -778,6 +899,21 @@
                     "min_hits": 1,
                     "max_hits": 1,
                     "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "air-cutter",
+                    "power": 60,
+                    "max_pp": 25,
+                    "pp": 25,
+                    "category": "special",
+                    "type": "flying",
+                    "crit_chance": 1,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has an increased chance for a critical hit."
                 },
                 {
                     "name": "rock-tomb",
@@ -886,6 +1022,66 @@
                     "effect": "Raises the user's Attack and Speed by one stage."
                 },
                 {
+                    "name": "roost",
+                    "power": 0,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "status",
+                    "type": "flying",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Heals the user by half its max HP."
+                },
+                {
+                    "name": "tailwind",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "flying",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "For three turns, friendly Pok\u00e9mon have doubled Speed."
+                },
+                {
+                    "name": "aqua-tail",
+                    "power": 90,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "water",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "air-slash",
+                    "power": 75,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "flying",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to make the target flinch."
+                },
+                {
                     "name": "dragon-pulse",
                     "power": 85,
                     "max_pp": 10,
@@ -899,6 +1095,21 @@
                     "min_hits": 1,
                     "max_hits": 1,
                     "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "giga-impact",
+                    "power": 150,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User foregoes its next turn to recharge."
                 },
                 {
                     "name": "shadow-claw",
@@ -961,6 +1172,29 @@
                     "effect": "Has a 20% chance to make the target flinch."
                 },
                 {
+                    "name": "defog",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "flying",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "evasion",
+                                "url": "https://pokeapi.co/api/v2/stat/8/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Lowers the target's evasion by one stage.  Removes field effects from the enemy field."
+                },
+                {
                     "name": "draco-meteor",
                     "power": 130,
                     "max_pp": 5,
@@ -999,6 +1233,21 @@
                     "effect": "Has a 30% chance to make the target flinch."
                 },
                 {
+                    "name": "stone-edge",
+                    "power": 100,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "physical",
+                    "type": "rock",
+                    "crit_chance": 1,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has an increased chance for a critical hit."
+                },
+                {
                     "name": "captivate",
                     "power": 0,
                     "max_pp": 20,
@@ -1020,6 +1269,57 @@
                     "min_hits": 1,
                     "max_hits": 1,
                     "effect": "Lowers the target's Special Attack by two stages if it's the opposite gender."
+                },
+                {
+                    "name": "ominous-wind",
+                    "power": 60,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "special",
+                    "type": "ghost",
+                    "crit_chance": 0,
+                    "effect_chance": 10,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "attack",
+                                "url": "https://pokeapi.co/api/v2/stat/2/"
+                            }
+                        },
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        },
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "special-attack",
+                                "url": "https://pokeapi.co/api/v2/stat/4/"
+                            }
+                        },
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "special-defense",
+                                "url": "https://pokeapi.co/api/v2/stat/5/"
+                            }
+                        },
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "speed",
+                                "url": "https://pokeapi.co/api/v2/stat/6/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 10% chance to raise all of the user's stats by one stage."
                 },
                 {
                     "name": "hone-claws",
@@ -1082,6 +1382,29 @@
                     "effect": "Destroys the target's held berry."
                 },
                 {
+                    "name": "bulldoze",
+                    "power": 60,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "ground",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "speed",
+                                "url": "https://pokeapi.co/api/v2/stat/6/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 100% chance to lower the target's Speed by one stage."
+                },
+                {
                     "name": "dragon-tail",
                     "power": 60,
                     "max_pp": 10,
@@ -1095,6 +1418,21 @@
                     "min_hits": 1,
                     "max_hits": 1,
                     "effect": "Ends wild battles.  Forces trainers to switch Pok\u00e9mon."
+                },
+                {
+                    "name": "hurricane",
+                    "power": 110,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "special",
+                    "type": "flying",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "confusion",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to confuse the target."
                 },
                 {
                     "name": "confide",
@@ -1118,6 +1456,89 @@
                     "min_hits": 1,
                     "max_hits": 1,
                     "effect": "Lowers the target's Special Attack by one stage."
+                },
+                {
+                    "name": "laser-focus",
+                    "power": 0,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Guarantees a critical hit with the user's next move."
+                },
+                {
+                    "name": "brutal-swing",
+                    "power": 60,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "dark",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "psychic-fangs",
+                    "power": 85,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "psychic",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Destroys Reflect and Light Screen."
+                },
+                {
+                    "name": "breaking-swipe",
+                    "power": 60,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "dragon",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "attack",
+                                "url": "https://pokeapi.co/api/v2/stat/2/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Lowers the target's Attack by one stage after inflicting damage."
+                },
+                {
+                    "name": "dual-wingbeat",
+                    "power": 40,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "flying",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 2,
+                    "max_hits": 2,
+                    "effect": "Inflicts regular damage with no additional effect."
                 },
                 {
                     "name": "tera-blast",
@@ -1165,35 +1586,35 @@
                     "effect": "None"
                 }
             ],
-            "exp": 0,
-            "max_exp": 5,
+            "exp": 5,
+            "max_exp": 17,
             "status": "none",
             "is_wild": false,
             "caught": false,
-            "id": "574ad0c4-5d7a-4bbc-9a1c-741cd08e6935",
+            "id": "7f1de27e-699a-4e49-9c9c-be65b8ca88f8",
             "base_stats": {
-                "hp": 65,
-                "attack": 95,
-                "defense": 100,
-                "special-attack": 60,
-                "special-defense": 50,
-                "speed": 50,
+                "hp": 95,
+                "attack": 135,
+                "defense": 80,
+                "special-attack": 110,
+                "special-defense": 80,
+                "speed": 100,
                 "accuracy": 100,
                 "evasion": 100,
-                "id": 372
+                "id": 373
             },
             "stats": {
-                "hp": 77,
-                "attack": 107,
-                "defense": 112,
-                "special-attack": 72,
-                "special-defense": 62,
-                "speed": 62,
+                "hp": 113,
+                "attack": 153,
+                "defense": 98,
+                "special-attack": 128,
+                "special-defense": 98,
+                "speed": 118,
                 "accuracy": 100,
                 "evasion": 100,
-                "id": 372
+                "id": 373
             },
-            "current_health": 59
+            "current_health": 77
         },
         {
             "name": "Charmander",
@@ -5753,13 +6174,1314 @@
                 "id": 610
             },
             "current_health": 49
+        },
+        {
+            "name": "Axew",
+            "type": "dragon",
+            "level": 5,
+            "moves": [
+                {
+                    "name": "scratch",
+                    "power": 40,
+                    "max_pp": 35,
+                    "pp": 32,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "pound",
+                    "power": 40,
+                    "max_pp": 35,
+                    "pp": 35,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                }
+            ],
+            "evolution": "Fraxure",
+            "evolution_level": 38,
+            "evolved": false,
+            "learnable_moves": [
+                {
+                    "name": "scratch",
+                    "power": 40,
+                    "max_pp": 35,
+                    "pp": 35,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "razor-wind",
+                    "power": 80,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 1,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Requires a turn to charge before attacking."
+                },
+                {
+                    "name": "swords-dance",
+                    "power": 0,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 2,
+                            "stat": {
+                                "name": "attack",
+                                "url": "https://pokeapi.co/api/v2/stat/2/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the user's Attack by two stages."
+                },
+                {
+                    "name": "cut",
+                    "power": 50,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "take-down",
+                    "power": 90,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User receives 1/4 the damage it inflicts in recoil."
+                },
+                {
+                    "name": "double-edge",
+                    "power": 120,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User receives 1/3 the damage inflicted in recoil."
+                },
+                {
+                    "name": "leer",
+                    "power": 0,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Lowers the target's Defense by one stage."
+                },
+                {
+                    "name": "bite",
+                    "power": 60,
+                    "max_pp": 25,
+                    "pp": 25,
+                    "category": "physical",
+                    "type": "dark",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to make the target flinch."
+                },
+                {
+                    "name": "roar",
+                    "power": 0,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Immediately ends wild battles.  Forces trainers to switch Pok\u00e9mon."
+                },
+                {
+                    "name": "surf",
+                    "power": 90,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "water",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage and can hit Dive users."
+                },
+                {
+                    "name": "strength",
+                    "power": 80,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "dig",
+                    "power": 80,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "ground",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User digs underground, dodging all attacks, and hits next turn."
+                },
+                {
+                    "name": "toxic",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "poison",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "poison",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Badly poisons the target, inflicting more damage every turn."
+                },
+                {
+                    "name": "double-team",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "evasion",
+                                "url": "https://pokeapi.co/api/v2/stat/8/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the user's evasion by one stage."
+                },
+                {
+                    "name": "harden",
+                    "power": 0,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the user's Defense by one stage."
+                },
+                {
+                    "name": "focus-energy",
+                    "power": 0,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Increases the user's chance to score a critical hit."
+                },
+                {
+                    "name": "swift",
+                    "power": 60,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Never misses."
+                },
+                {
+                    "name": "rest",
+                    "power": 0,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "status",
+                    "type": "psychic",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User sleeps for two turns, completely healing itself."
+                },
+                {
+                    "name": "slash",
+                    "power": 70,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 1,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has an increased chance for a critical hit."
+                },
+                {
+                    "name": "substitute",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Transfers 1/4 of the user's max HP into a doll, protecting the user from further damage or status changes until it breaks."
+                },
+                {
+                    "name": "snore",
+                    "power": 50,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to make the target flinch.  Only works if the user is sleeping."
+                },
+                {
+                    "name": "protect",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Prevents any moves from hitting the user this turn."
+                },
+                {
+                    "name": "scary-face",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -2,
+                            "stat": {
+                                "name": "speed",
+                                "url": "https://pokeapi.co/api/v2/stat/6/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Lowers the target's Speed by two stages."
+                },
+                {
+                    "name": "outrage",
+                    "power": 120,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "dragon",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Hits every turn for 2-3 turns, then confuses the user."
+                },
+                {
+                    "name": "endure",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Prevents the user's HP from lowering below 1 this turn."
+                },
+                {
+                    "name": "false-swipe",
+                    "power": 40,
+                    "max_pp": 40,
+                    "pp": 40,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Cannot lower the target's HP below 1."
+                },
+                {
+                    "name": "swagger",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "confusion",
+                    "stat_changes": [
+                        {
+                            "change": 2,
+                            "stat": {
+                                "name": "attack",
+                                "url": "https://pokeapi.co/api/v2/stat/2/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the target's Attack by two stages and confuses the target."
+                },
+                {
+                    "name": "sleep-talk",
+                    "power": 0,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Randomly uses one of the user's other three moves.  Only works if the user is sleeping."
+                },
+                {
+                    "name": "iron-tail",
+                    "power": 100,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "steel",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to lower the target's Defense by one stage."
+                },
+                {
+                    "name": "hidden-power",
+                    "power": 60,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Power and type depend upon user's IVs.  Power can range from 30 to 70."
+                },
+                {
+                    "name": "rain-dance",
+                    "power": 0,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "status",
+                    "type": "water",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Changes the weather to rain for five turns."
+                },
+                {
+                    "name": "sunny-day",
+                    "power": 0,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "status",
+                    "type": "fire",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Changes the weather to sunny for five turns."
+                },
+                {
+                    "name": "crunch",
+                    "power": 80,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "dark",
+                    "crit_chance": 0,
+                    "effect_chance": 20,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 20% chance to lower the target's Defense by one stage."
+                },
+                {
+                    "name": "rock-smash",
+                    "power": 40,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "fighting",
+                    "crit_chance": 0,
+                    "effect_chance": 50,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 50% chance to lower the target's Defense by one stage."
+                },
+                {
+                    "name": "facade",
+                    "power": 70,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Power doubles if user is burned, paralyzed, or poisoned."
+                },
+                {
+                    "name": "taunt",
+                    "power": 0,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "status",
+                    "type": "dark",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "For the next few turns, the target can only use damaging moves."
+                },
+                {
+                    "name": "superpower",
+                    "power": 120,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "physical",
+                    "type": "fighting",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "attack",
+                                "url": "https://pokeapi.co/api/v2/stat/2/"
+                            }
+                        },
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "defense",
+                                "url": "https://pokeapi.co/api/v2/stat/3/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Lowers the user's Attack and Defense by one stage after inflicting damage."
+                },
+                {
+                    "name": "brick-break",
+                    "power": 75,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "fighting",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Destroys Reflect and Light Screen."
+                },
+                {
+                    "name": "secret-power",
+                    "power": 70,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to inflict a status effect which depends upon the terrain."
+                },
+                {
+                    "name": "rock-tomb",
+                    "power": 60,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "rock",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "speed",
+                                "url": "https://pokeapi.co/api/v2/stat/6/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 100% chance to lower the target's Speed by one stage."
+                },
+                {
+                    "name": "aerial-ace",
+                    "power": 60,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "flying",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Never misses."
+                },
+                {
+                    "name": "dragon-claw",
+                    "power": 80,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "dragon",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "dragon-dance",
+                    "power": 0,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "status",
+                    "type": "dragon",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "attack",
+                                "url": "https://pokeapi.co/api/v2/stat/2/"
+                            }
+                        },
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "speed",
+                                "url": "https://pokeapi.co/api/v2/stat/6/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the user's Attack and Speed by one stage."
+                },
+                {
+                    "name": "shock-wave",
+                    "power": 60,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "special",
+                    "type": "electric",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Never misses."
+                },
+                {
+                    "name": "payback",
+                    "power": 50,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "dark",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Power is doubled if the target has already moved this turn."
+                },
+                {
+                    "name": "assurance",
+                    "power": 60,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "dark",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Power is doubled if the target has already received damage this turn."
+                },
+                {
+                    "name": "poison-jab",
+                    "power": 80,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "poison",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "poison",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to poison the target."
+                },
+                {
+                    "name": "night-slash",
+                    "power": 70,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "dark",
+                    "crit_chance": 1,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has an increased chance for a critical hit."
+                },
+                {
+                    "name": "aqua-tail",
+                    "power": 90,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "water",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "x-scissor",
+                    "power": 80,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "bug",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "dragon-pulse",
+                    "power": 85,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "special",
+                    "type": "dragon",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Inflicts regular damage with no additional effect."
+                },
+                {
+                    "name": "giga-impact",
+                    "power": 150,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "physical",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "User foregoes its next turn to recharge."
+                },
+                {
+                    "name": "shadow-claw",
+                    "power": 70,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "ghost",
+                    "crit_chance": 1,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has an increased chance for a critical hit."
+                },
+                {
+                    "name": "draco-meteor",
+                    "power": 130,
+                    "max_pp": 5,
+                    "pp": 5,
+                    "category": "special",
+                    "type": "dragon",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -2,
+                            "stat": {
+                                "name": "special-attack",
+                                "url": "https://pokeapi.co/api/v2/stat/4/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Lowers the user's Special Attack by two stages after inflicting damage."
+                },
+                {
+                    "name": "iron-head",
+                    "power": 80,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "steel",
+                    "crit_chance": 0,
+                    "effect_chance": 30,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 30% chance to make the target flinch."
+                },
+                {
+                    "name": "hone-claws",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "dark",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "attack",
+                                "url": "https://pokeapi.co/api/v2/stat/2/"
+                            }
+                        },
+                        {
+                            "change": 1,
+                            "stat": {
+                                "name": "accuracy",
+                                "url": "https://pokeapi.co/api/v2/stat/7/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Raises the user's Attack and accuracy by one stage."
+                },
+                {
+                    "name": "round",
+                    "power": 60,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has double power if it's used more than once per turn."
+                },
+                {
+                    "name": "incinerate",
+                    "power": 60,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "fire",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Destroys the target's held berry."
+                },
+                {
+                    "name": "bulldoze",
+                    "power": 60,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "ground",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "speed",
+                                "url": "https://pokeapi.co/api/v2/stat/6/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 100% chance to lower the target's Speed by one stage."
+                },
+                {
+                    "name": "dragon-tail",
+                    "power": 60,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "dragon",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Ends wild battles.  Forces trainers to switch Pok\u00e9mon."
+                },
+                {
+                    "name": "dual-chop",
+                    "power": 40,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "dragon",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 2,
+                    "max_hits": 2,
+                    "effect": "Hits twice in one turn."
+                },
+                {
+                    "name": "snarl",
+                    "power": 55,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "special",
+                    "type": "dark",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "special-attack",
+                                "url": "https://pokeapi.co/api/v2/stat/4/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has a 100% chance to lower the target's Special Attack by one stage."
+                },
+                {
+                    "name": "confide",
+                    "power": 0,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "special-attack",
+                                "url": "https://pokeapi.co/api/v2/stat/4/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Lowers the target's Special Attack by one stage."
+                },
+                {
+                    "name": "first-impression",
+                    "power": 90,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "bug",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Can only be used as the first move after the user enters battle."
+                },
+                {
+                    "name": "laser-focus",
+                    "power": 0,
+                    "max_pp": 30,
+                    "pp": 30,
+                    "category": "status",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Guarantees a critical hit with the user's next move."
+                },
+                {
+                    "name": "stomping-tantrum",
+                    "power": 75,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "physical",
+                    "type": "ground",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Has double power if the user's last move failed."
+                },
+                {
+                    "name": "breaking-swipe",
+                    "power": 60,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "physical",
+                    "type": "dragon",
+                    "crit_chance": 0,
+                    "effect_chance": 100,
+                    "ailment": "none",
+                    "stat_changes": [
+                        {
+                            "change": -1,
+                            "stat": {
+                                "name": "attack",
+                                "url": "https://pokeapi.co/api/v2/stat/2/"
+                            }
+                        }
+                    ],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "Lowers the target's Attack by one stage after inflicting damage."
+                },
+                {
+                    "name": "scale-shot",
+                    "power": 25,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "dragon",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 2,
+                    "max_hits": 5,
+                    "effect": "Boosts the user's Speed and lowers their Defense by one stage after inflicting damage two to five times in a row."
+                },
+                {
+                    "name": "tera-blast",
+                    "power": 80,
+                    "max_pp": 10,
+                    "pp": 10,
+                    "category": "special",
+                    "type": "normal",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "None"
+                },
+                {
+                    "name": "trailblaze",
+                    "power": 50,
+                    "max_pp": 20,
+                    "pp": 20,
+                    "category": "physical",
+                    "type": "grass",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "None"
+                },
+                {
+                    "name": "dragon-cheer",
+                    "power": 0,
+                    "max_pp": 15,
+                    "pp": 15,
+                    "category": "status",
+                    "type": "dragon",
+                    "crit_chance": 0,
+                    "effect_chance": 0,
+                    "ailment": "none",
+                    "stat_changes": [],
+                    "min_hits": 1,
+                    "max_hits": 1,
+                    "effect": "None"
+                }
+            ],
+            "exp": 0,
+            "max_exp": 25,
+            "status": "none",
+            "is_wild": false,
+            "caught": false,
+            "id": "50ab6896-c2c1-4298-872d-f08ee576c6c9",
+            "base_stats": {
+                "hp": 46,
+                "attack": 87,
+                "defense": 60,
+                "special-attack": 30,
+                "special-defense": 40,
+                "speed": 57,
+                "accuracy": 100,
+                "evasion": 100,
+                "id": 610
+            },
+            "stats": {
+                "hp": 61,
+                "attack": 102,
+                "defense": 75,
+                "special-attack": 45,
+                "special-defense": 55,
+                "speed": 72,
+                "accuracy": 100,
+                "evasion": 100,
+                "id": 610
+            },
+            "current_health": 61
         }
     ],
     "inventory": {
-        "pokeball": 2,
-        "super potion": 1,
-        "status heal": 5,
-        "pp restore": 5
+        "pokeball": 3,
+        "super potion": 2,
+        "status heal": 7,
+        "pp restore": 7
     },
     "pc": [],
     "regions": [
