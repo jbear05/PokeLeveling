@@ -541,5 +541,24 @@ pokedex = {
 
     "Hydreigon": Pokemon("Hydreigon", "dragon", 1, ["tackle", "dragon-rage"]),
     
-    "Druddigon": Pokemon("Druddigon", "dragon", 5, ["leer", "scratch"])
+    "Druddigon": Pokemon("Druddigon", "dragon", 5, ["leer", "scratch"]),
+
+    #Legendary Pokémon
+    "Mew": Pokemon("Mew", "psychic", 100, ["psychic", "aura-sphere", "nasty-plot", "scald"]),
+
+    "Mewtwo": Pokemon("Mewtwo", "psychic", 100, ["psychic", "aura-sphere", "calm-mind", "psystrike"]),
+
+    "Rayquaza": Pokemon("Rayquaza", "dragon", 100, ["dragon-ascent", "extreme-speed", "dragon-dance", "outrage"]),
+
+    "Groudon": Pokemon("Groudon", "ground", 100, ["precipice-blades", "earthquake", "eruption", "solar-beam"]),
+
+    "Kyogre": Pokemon("Kyogre", "water", 100, ["origin-pulse", "water-spout", "ice-beam", "thunder"]),
+
+    "Palkia": Pokemon("Palkia", "water", 100, ["spacial-rend", "aura-sphere", "hydro-pump", "draco-meteor"]),
+
+    "Dialga": Pokemon("Dialga", "steel", 100, ["roar-of-time", "metal-sound", "flash-cannon", "dragon-breath"]),
+
+    "Zekrom": Pokemon("Zekrom", "electric", 100, ["fusion-bolt", "bolt-strike", "outrage", "noble-roar"]),
+
+    "Reshiram": Pokemon("Reshiram", "fire", 100, ["blue-flare", "hyper-voice", "fusion-flare", "noble-roar"]),
 }

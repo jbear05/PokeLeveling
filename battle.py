@@ -301,7 +301,8 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
             if opponent_pokemon.name == pokemon.name:
                 opponent_pokemon.caught = True
         # Draw a sign to show if pokemon is caught next to their name
-        if opponent_pokemon.caught:
+        if pokedex[opponent_pokemon.name].caught:
+            # Load the caught image
             # Replace the text rendering with the image rendering
             caught_sign_rect = caught_image.get_rect(center=(opponent_health_bar_rect.right + 20, opponent_health_bar_rect.centery))
             screen.blit(caught_image, caught_sign_rect)
@@ -443,7 +444,6 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                         exp_added = True
                         player_pokemon.evolved = True
                         evolution_text = f"{player_pokemon.name} evolved into {player_pokemon.evolution}!"
-                        break
 
                     if max(1, (player_pokemon.level - 5)) % 3 == 0:
                         exp_added = True #variable to check if exp has been added

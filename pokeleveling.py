@@ -3,9 +3,7 @@ things to do:
 - battle start screen to give time to load
 - make save data deleteable
 - save level data
-- add legendary boss fights
 - add game level system
-- evolution system
 - integrate specific move effects
 """
 
@@ -48,13 +46,24 @@ LIGHT_GRAY = (211, 211, 211)
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("PokeLeveling")
 
-#Loading screen
-screen.fill(WHITE)
-font = pygame.font.Font(None, 36)
-loading_text = font.render("Loading...", True, BLACK)
-loading_rect = loading_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
-screen.blit(loading_text, loading_rect)
-pygame.display.flip()
+#Loading screen function
+def loading_screen():
+    screen.fill(WHITE)
+    font = pygame.font.Font(None, 36)
+    loading_text = font.render("Loading...", True, BLACK)
+    loading_rect = loading_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
+    screen.blit(loading_text, loading_rect)
+    pygame.display.flip()
+    for event in pygame.event.get():
+        if event.type == pygame.USEREVENT:
+            screen.blit(loading_text, loading_rect)
+            pygame.display.flip()
+        elif event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+
+#call the function
+loading_screen()
 
 import random
 from entities import Pokemon, Player, player, create_path, load_player_data
@@ -73,13 +82,6 @@ def generate_map(width, height):
 # Update the screen periodically
 pygame.time.set_timer(pygame.USEREVENT, 100)  # Set a timer for 100 milliseconds
 
-for event in pygame.event.get():
-    if event.type == pygame.USEREVENT:
-        screen.blit(loading_text, loading_rect)
-        pygame.display.flip()
-    elif event.type == pygame.QUIT:
-        pygame.quit()
-        exit()
 from pokedex import pokedex
 
 pygame.time.set_timer(pygame.USEREVENT, 0)  # Stop the timer
@@ -139,6 +141,9 @@ dojo = ["Hitmonlee", "Hitmonchan", "Hitmontop", "Machop", "Mankey", "Makuhita", 
 clouds = ["Pidgey", "Spearow", "Farfetchd", "Doduo", "Hoothoot", "Taillow", "Starly", "Pidove", "Aerodactyl", "Swablu"]
 swamp = ["Zubat", "Grimer", "Koffing", "Croagunk", "Trubbish", "Venipede", "Skorupi", "Stunky", "Nidoran-f", "Nidoran-m"]
 dragons_den = ["Dratini", "Bagon", "Axew", "Deino", "Druddigon"]
+
+#Legendary pokemon for bosst fights
+legendary_pokemon = ["Mew", "Mewtwo", "Rayquaza", "Groudon", "Kyogre", "Dialga", "Palkia", "Reshiram", "Zekrom"]
 
 #load player data and map data
 data_retrieved, regionGeneration, regions = load_player_data(player)
@@ -285,14 +290,38 @@ def get_region_pokemon(player_x, player_y):
 
 pokedex_completion = 0
 def get_player_pokedex_completion(pokedex_completion, player):
-    for pokemon in set(player.pokemon_team):
-        if pokemon.name in level_pokedex and not pokedex[pokemon.name].caught:
-            pokedex_completion += 1
-            pokedex[pokemon.name].caught = True
-    for pokemon in set(player.pc):
-        if pokemon.name in level_pokedex and not pokedex[pokemon.name].caught:
-            pokedex_completion += 1
-            pokedex[pokemon.name].caught = True
+    for name in level_pokedex:
+        for pokemon in set(player.pokemon_team):
+            #handle evolution names not counting in pokedex completion
+            if pokedex[name].evolution:
+                if pokedex[pokedex[name].evolution].evolution:
+                    if pokedex[pokedex[name].evolution].evolution == pokemon.name and not pokedex[name].caught:
+                        pokedex_completion += 1
+                        pokedex[name].caught = True
+                        continue
+                if pokedex[name].evolution == pokemon.name and not pokedex[name].caught:
+                    pokedex_completion += 1
+                    pokedex[name].caught = True
+                    continue
+            if name == pokemon.name and not pokedex[name].caught:
+                pokedex_completion += 1
+                pokedex[name].caught = True
+                
+        for pokemon in set(player.pc):
+            #handle evolution names not counting in pokedex completion
+            if pokedex[name].evolution:
+                if pokedex[pokedex[name].evolution].evolution:
+                    if pokedex[pokedex[name].evolution].evolution == pokemon.name and not pokedex[name].caught:
+                        pokedex_completion += 1
+                        pokedex[name].caught = True
+                        continue
+                if pokedex[name].evolution == pokemon.name and not pokedex[name].caught:
+                    pokedex_completion += 1
+                    pokedex[name].caught = True
+                    continue
+            if name == pokemon.name and not pokedex[name].caught:
+                pokedex_completion += 1
+                pokedex[name].caught = True
 
     return pokedex_completion
 
@@ -323,7 +352,6 @@ starter_menu_text_rect = starter_menu_text.get_rect(center=(SCREEN_WIDTH // 2, 4
 
 # Main game loop
 starter_selected = False
-pokedex_complete = False
 font = pygame.font.Font(None, 22)
 prev_x, prev_y = player.grid_x, player.grid_y
 running = True
@@ -347,6 +375,18 @@ winBattle = False
 rewards_display_time = 3000  # Time in milliseconds to display the rewards text
 rewards_start_time = None
 pokedex_completion = get_player_pokedex_completion(pokedex_completion, player)
+for pokemon in level_pokedex:
+    if not pokedex[pokemon].caught:
+        pokedex_complete = False
+        break
+    else:
+        pokedex_complete = True
+if pokedex_complete:
+    boss_fight_flag = True
+else:
+    boss_fight_flag = False
+winBossBattle = False
+level = 1
 while running:
     if not starter_selected and len(player.pokemon_team) == 0:
         for event in pygame.event.get():
@@ -571,15 +611,26 @@ while running:
 
             # Start the battle if the random number is within the encounter probability
             if random.random() < BATTLE_PROBABILITY and len(region_pokemon)>0:
-                opponent_pokemon_name = random.choice(region_pokemon)
-                opponent_pokemon = pokedex[opponent_pokemon_name]
-                lvlDiff = random.randint(-3, 2)
-                environment = (regionsForDrawing[i]["tile"] for i in range(len(regionsForDrawing)) if regionsForDrawing[i]["rect"].collidepoint(player.grid_x * TILE_SIZE, player.grid_y * TILE_SIZE)).__next__()
-                battle_stage = (i + 1 for i in range(len(environments)) if environments[i] == environment).__next__()
-                winBattle = battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, battle_stage, player.pokemon_team[0], Pokemon(opponent_pokemon.name, opponent_pokemon.type, max(1, player.pokemon_team[0].level + lvlDiff), opponent_pokemon.moves, opponent_pokemon.evolution, opponent_pokemon.evolution_level, is_wild=True))
-                pokemon_buttons = create_pokemon_buttons(screen)
-                item_buttons = create_item_buttons(player, screen, SCREEN_WIDTH)
-                pc_pokemon_buttons = create_pc_pokemon_buttons(screen, player, SCREEN_WIDTH, page)
+                if boss_fight_flag:
+                    opponent_pokemon_name = random.choice(legendary_pokemon)
+                    opponent_pokemon = pokedex[opponent_pokemon_name]
+                    environment = (regionsForDrawing[i]["tile"] for i in range(len(regionsForDrawing)) if regionsForDrawing[i]["rect"].collidepoint(player.grid_x * TILE_SIZE, player.grid_y * TILE_SIZE)).__next__()
+                    battle_stage = (i + 1 for i in range(len(environments)) if environments[i] == environment).__next__()
+                    winBossBattle = battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, battle_stage, player.pokemon_team[0], Pokemon(opponent_pokemon.name, opponent_pokemon.type, level * 20, opponent_pokemon.moves, opponent_pokemon.evolution, opponent_pokemon.evolution_level, is_wild=True))
+                    pokemon_buttons = create_pokemon_buttons(screen)
+                    item_buttons = create_item_buttons(player, screen, SCREEN_WIDTH)
+                    pc_pokemon_buttons = create_pc_pokemon_buttons(screen, player, SCREEN_WIDTH, page)
+
+                else:
+                    opponent_pokemon_name = random.choice(region_pokemon)
+                    opponent_pokemon = pokedex[opponent_pokemon_name]
+                    lvlDiff = random.randint(-3, 2)
+                    environment = (regionsForDrawing[i]["tile"] for i in range(len(regionsForDrawing)) if regionsForDrawing[i]["rect"].collidepoint(player.grid_x * TILE_SIZE, player.grid_y * TILE_SIZE)).__next__()
+                    battle_stage = (i + 1 for i in range(len(environments)) if environments[i] == environment).__next__()
+                    winBattle = battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, battle_stage, player.pokemon_team[0], Pokemon(opponent_pokemon.name, opponent_pokemon.type, max(1, player.pokemon_team[0].level + lvlDiff), opponent_pokemon.moves, opponent_pokemon.evolution, opponent_pokemon.evolution_level, is_wild=True))
+                    pokemon_buttons = create_pokemon_buttons(screen)
+                    item_buttons = create_item_buttons(player, screen, SCREEN_WIDTH)
+                    pc_pokemon_buttons = create_pc_pokemon_buttons(screen, player, SCREEN_WIDTH, page)
             #quit game if player closes and quits battle
             if winBattle == "quit":
                 save_player_data(player, regionGeneration, regions)
@@ -609,13 +660,15 @@ while running:
                 
                 if pokedex_complete:
                     rewards_text = f"Player completed the Pokédex!"
+                    boss_fight_flag = True
+                    winBattle = False
                     rewards_text_surface = pygame.font.Font(None, 60).render(rewards_text, True, RED)
                     rewards_text_rect = rewards_text_surface.get_rect(center=(screen.get_width() // 2, 277))
                     rewards_start_time = pygame.time.get_ticks()
                 
                 else:  
                     for item in player.inventory:
-                        player.inventory[item] += 1
+                        player.inventory[item] += random.randint(0, 2)
                     item_buttons = create_item_buttons(player, screen, SCREEN_WIDTH)
                     rewards_text = f"Player restocked items!"
                     rewards_text_surface = pygame.font.Font(None, 30).render(rewards_text, True, RED)

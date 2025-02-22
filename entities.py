@@ -8,9 +8,11 @@ import requests
 from io import BytesIO
 from typings import pokemon_advantages, pokemon_disadvantages, pokemon_null
 from data import get_move_data, get_pokemon_stats, get_pokemon_moves
-#libraries for path
+#libraries for path and async loading
 import os
 import sys
+import threading
+
 
 # Constants
 SCREEN_WIDTH = 800
@@ -19,6 +21,7 @@ TILE_SIZE = 40  # Size of each tile (square)
 GRID_WIDTH = SCREEN_WIDTH // TILE_SIZE  # Number of columns
 GRID_HEIGHT = SCREEN_HEIGHT // TILE_SIZE  # Number of rows
 BATTLE_PROBABILITY = 0.1  # 10% chance of encountering a wild Pokémon
+GRAY = (128, 128, 128)
 
 def create_path(relative_path: str) -> str:
     '''creates and returns the path to the resource depending on if it is
@@ -56,6 +59,29 @@ def use(move, player_pokemon, opponent):
 
     return damage, ailment_applied, stat_change_applied, target, missed
 
+#code to make image loading async
+# Dictionary to cache loaded images
+image_cache = {}
+
+# Placeholder image
+placeholder_image = pygame.Surface((TILE_SIZE, TILE_SIZE))
+placeholder_image.fill(GRAY)
+
+def load_image_async(image_url, cache_key, callback):
+    response = requests.get(image_url)
+    image = pygame.image.load(BytesIO(response.content))
+    image_cache[cache_key] = image
+    callback(image)
+
+def get_image(image_url, callback):
+    if image_url in image_cache:
+        return image_cache[image_url]
+    else:
+        # Start a new thread to load the image
+        threading.Thread(target=load_image_async, args=(image_url, image_url, callback)).start()
+        return placeholder_image
+
+
 
 player_pokemon_moves = {}
 
@@ -79,7 +105,11 @@ class Pokemon:
         self.base_stats = get_pokemon_stats(name.lower())  # A dictionary of base stats
         self.stats = stats if stats is not None else self.base_stats.copy() # A dictionary of base stats
         self.current_health = current_health if current_health is not None else self.stats['hp']  # Current health of the PokémonS
-        self.image = pygame.image.load(BytesIO(requests.get(f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{self.stats["id"]}.png").content))
+        image_url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{self.stats['id']}.png"
+        self.image = get_image(image_url, self.update_image)
+
+    def update_image(self, image):
+        self.image = image
 
     def learn_move(self, move, screen):
         if len(self.moves) < 4:
