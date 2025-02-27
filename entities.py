@@ -37,14 +37,14 @@ def create_path(relative_path: str) -> str:
 def use(move, player_pokemon, opponent):
     """Calculate damage based on move power and level"""
     missed = False
-    if player_pokemon.stats['accuracy'] < 100 and (random.random() + player_pokemon.stats['accuracy']/100) < opponent.stats['evasion']/100:
+    if player_pokemon.stats['accuracy'] < 100 and (random.random() + player_pokemon.stats['accuracy']/100) < opponent.stats['evasion']/100 and move['category'] != "status":
         missed = True
         return 0, False, False, opponent.name, missed
     damage = move['power']  # Simple damage formula
     ailment_applied = False
     stat_change_applied = False
     target = None
-    if move['ailment'] != "none" and opponent.status == None and random.random() <= (move['effect_chance'] if move['effect_chance'] != 0 else 100)/100:
+    if move['ailment'] != "none" and opponent.status == "none" and random.random() <= (move['effect_chance'] if move['effect_chance'] != 0 else 100)/100:
         opponent.status = move['ailment']
         ailment_applied = True
     if len(move['stat_changes']) > 0:
@@ -112,6 +112,10 @@ class Pokemon:
         self.image = image
 
     def learn_move(self, move, screen):
+        if move in self.moves:
+            while move in self.moves:
+                self.learnable_moves.pop(0)
+                move = self.learnable_moves[0]
         if len(self.moves) < 4:
             self.moves.append(move)
             return f"{self.name} learned {self.learnable_moves[0]['name']}!"
@@ -128,6 +132,8 @@ class Pokemon:
         self.stats["defense"] = self.base_stats["defense"] + (self.level * 3)
         self.stats["special-defense"] = self.base_stats["special-defense"] + (self.level * 3)
         self.stats["speed"] = self.base_stats["speed"] + (self.level * 3)
+        self.stats["accuracy"] = 100
+        self.stats["evasion"] = 100
         self.current_health = self.stats['hp'] - healthDiff  # Ensure current health does not exceed max health
 
     def level_up(self):

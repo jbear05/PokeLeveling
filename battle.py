@@ -435,12 +435,12 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
             battle_text = f"You won the battle!"
             result = True
             if not exp_added:
-                player_pokemon.exp += 10 * max((opponent_pokemon.level - player_pokemon.level + 1), 1)
+                player_pokemon.exp += 20 * max((opponent_pokemon.level - player_pokemon.level + 1), 1.5) * max(player_pokemon.level / 10, 1)
             if player_pokemon.exp >= player_pokemon.max_exp:
                 while player_pokemon.exp >= player_pokemon.max_exp:
                     player_pokemon.level_up()
                     battle_text += f" {player_pokemon.name} leveled up to level {player_pokemon.level}!"
-                    if player_pokemon.evolution is not None and player_pokemon.level < player_pokemon.evolution_level:
+                    if player_pokemon.evolution is not None and player_pokemon.level == player_pokemon.evolution_level:
                         exp_added = True
                         player_pokemon.evolved = True
                         evolution_text = f"{player_pokemon.name} evolved into {player_pokemon.evolution}!"
@@ -757,7 +757,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                         elif player_pokemon.type in pokemon_disadvantages[move['type']]:
                             damage /= 2
                         if move['category'] == "status":
-                            if opponent_pokemon.current_health >= opponent_pokemon.stats['hp']:
+                            if opponent_pokemon.current_health >= opponent_pokemon.stats['hp'] and random.random() < 0.7:
                                 best_move = move
                                 break
                             damage = 0  # Status moves do not deal damage
