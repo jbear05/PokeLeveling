@@ -112,15 +112,20 @@ class Pokemon:
         self.image = image
 
     def learn_move(self, move, screen):
-        if move in self.moves:
-            while move in self.moves:
+        known_moves = [m['name'] for m in self.moves]
+
+        if move['name'] in known_moves:
+            while True:
                 self.learnable_moves.pop(0)
                 move = self.learnable_moves[0]
+                if move['name'] not in known_moves:
+                    break           
+            
         if len(self.moves) < 4:
             self.moves.append(move)
             return f"{self.name} learned {self.learnable_moves[0]['name']}!"
         else:
-            return f"{self.name} already knows 4 moves! Should a move be forgotten for {self.learnable_moves[0]}?"
+            return f"{self.name} already knows 4 moves! Should a move be forgotten for {self.learnable_moves[0]['name']}?"
             
 
     def update_stats(self):

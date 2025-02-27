@@ -440,7 +440,7 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                 while player_pokemon.exp >= player_pokemon.max_exp:
                     player_pokemon.level_up()
                     battle_text += f" {player_pokemon.name} leveled up to level {player_pokemon.level}!"
-                    if player_pokemon.evolution is not None and player_pokemon.level == player_pokemon.evolution_level:
+                    if player_pokemon.evolution is not None and player_pokemon.level >= player_pokemon.evolution_level:
                         exp_added = True
                         player_pokemon.evolved = True
                         evolution_text = f"{player_pokemon.name} evolved into {player_pokemon.evolution}!"
@@ -771,6 +771,10 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
 
                 # Use the selected move
                 damage, is_critical, is_effective, is_not_effective, is_null, ailment_applied, stat_change_applied, target, num_hits_text, missed = opponent_pokemon.use_move(best_move, player_pokemon)
+                if missed:
+                    battle_text = f"{opponent_pokemon.name} missed!"
+                    state = OPPONENT_MOVE
+                    break
                 battle_text = f"{opponent_pokemon.name} used {best_move['name']} for {damage} damage!"
                 state = OPPONENT_MOVE
                 if is_critical and not is_null:

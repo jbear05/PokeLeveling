@@ -148,6 +148,23 @@ pokedex = {
 
     # Normal type Pokémon
     "Eevee": Pokemon("Eevee", "normal", 5, ["tackle", "swift"], eevolution, 20),
+
+    #Eevee evolutions
+    "Vaporeon": Pokemon("Vaporeon", "water", 1, ["tackle", "swift"]),
+
+    "Jolteon": Pokemon("Jolteon", "electric", 1, ["tackle", "swift"]),
+
+    "Flareon": Pokemon("Flareon", "fire", 1, ["tackle", "swift"]),
+
+    "Espeon": Pokemon("Espeon", "psychic", 1, ["tackle", "swift"]),
+
+    "Umbreon": Pokemon("Umbreon", "dark", 1, ["tackle", "swift"]),
+
+    "Leafeon": Pokemon("Leafeon", "grass", 1, ["tackle", "swift"]),
+
+    "Glaceon": Pokemon("Glaceon", "ice", 1, ["tackle", "swift"]),
+
+    "Sylveon": Pokemon("Sylveon", "fairy", 1, ["tackle", "swift"]),
     
     "Jigglypuff": Pokemon("Jigglypuff", "normal", 5, ["tackle", "sing"], "Wigglytuff", 30),
 

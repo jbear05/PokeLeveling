@@ -388,7 +388,8 @@ else:
 winBossBattle = False
 level = 1
 while running:
-    if not starter_selected and len(player.pokemon_team) == 0:
+    if not starter_selected and len(player.pokemon_team) == 0 and len(player.pc) == 0:
+        # Display the starter selection screen
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 save_player_data(player, regionGeneration, regions)
@@ -624,10 +625,12 @@ while running:
                 else:
                     opponent_pokemon_name = random.choice(region_pokemon)
                     opponent_pokemon = pokedex[opponent_pokemon_name]
+                    if len(player.pokemon_team[0].moves) > 2:
+                        opponent_pokemon.moves = opponent_pokemon.learnable_moves[(max(((player.pokemon_team[0].level - 5) // 3), 0)):(max(((player.pokemon_team[0].level - 5) // 3), 0)) + len(player.pokemon_team[0].moves)]
                     lvlDiff = random.randint(-3, 2)
                     environment = (regionsForDrawing[i]["tile"] for i in range(len(regionsForDrawing)) if regionsForDrawing[i]["rect"].collidepoint(player.grid_x * TILE_SIZE, player.grid_y * TILE_SIZE)).__next__()
                     battle_stage = (i + 1 for i in range(len(environments)) if environments[i] == environment).__next__()
-                    winBattle = battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, battle_stage, player.pokemon_team[0], Pokemon(opponent_pokemon.name, opponent_pokemon.type, max(1, player.pokemon_team[0].level + lvlDiff), opponent_pokemon.moves, opponent_pokemon.evolution, opponent_pokemon.evolution_level, is_wild=True))
+                    winBattle = battle(screen, SCREEN_WIDTH, SCREEN_HEIGHT, battle_stage, player.pokemon_team[0], Pokemon(opponent_pokemon.name, opponent_pokemon.type, min(15, max(1, player.pokemon_team[0].level + lvlDiff)), opponent_pokemon.moves, opponent_pokemon.evolution, opponent_pokemon.evolution_level, is_wild=True))
                     pokemon_buttons = create_pokemon_buttons(screen)
                     item_buttons = create_item_buttons(player, screen, SCREEN_WIDTH)
                     pc_pokemon_buttons = create_pc_pokemon_buttons(screen, player, SCREEN_WIDTH, page)
@@ -668,7 +671,12 @@ while running:
                 
                 else:  
                     for item in player.inventory:
-                        player.inventory[item] += random.randint(0, 2)
+                        if item == "super potion":
+                            player.inventory[item] += 1
+                        elif item == "pokeball":
+                            player.inventory[item] += 1
+                        else:
+                            player.inventory[item] += random.randint(0, 2)
                     item_buttons = create_item_buttons(player, screen, SCREEN_WIDTH)
                     rewards_text = f"Player restocked items!"
                     rewards_text_surface = pygame.font.Font(None, 30).render(rewards_text, True, RED)
