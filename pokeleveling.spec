@@ -5,7 +5,7 @@ a = Analysis(
     ['pokeleveling.py'],
     pathex=[],
     binaries=[],
-    datas=[('Assets/Background/*.png', 'Assets/Background'), ('Assets/Battle/*.png', 'Assets/Battle'), ('Assets/Foreground/*.png', 'Assets/Foreground'), ('Assets/Player/*.png', 'Assets/Player'), ('Assets/Pokemon/*.png', 'Assets/Pokemon'), ('Assets/Tiles/*.png', 'Assets/Tiles')],
+    datas=[('Assets/Background/*.png', 'Assets/Background'), ('Assets/Battle/*.png', 'Assets/Battle'), ('Assets/Foreground/*.png', 'Assets/Foreground'), ('Assets/Player/*.png', 'Assets/Player'), ('Assets/Tiles/*.png', 'Assets/Tiles')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
