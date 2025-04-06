@@ -69,7 +69,7 @@ import random
 from entities import Pokemon, Player, player, create_path, load_player_data
 from battle import battle, Item, Button
 from inventory import display_buttons, create_item_buttons, create_pokemon_buttons, display_pokemon_buttons, create_pc_pokemon_buttons, display_pc_pokemon_buttons, move_pokemon_to_pc
-from data import save_player_data
+from data import save_player_data, delete_player_data
 
 
 #generate map
@@ -683,6 +683,11 @@ while running:
                     rewards_text_rect = rewards_text_surface.get_rect(center=(screen.get_width() // 2, 277))
                     rewards_start_time = pygame.time.get_ticks()  # Start the timer
                     winBattle = False
+            elif not winBattle and len(player.pokemon_team) == 0:
+                # Player lost the battle, delete the player data and quit the game
+                delete_player_data()
+                #close the game
+                pygame.quit()
             
 
         # Display the rewards text if the timer is running

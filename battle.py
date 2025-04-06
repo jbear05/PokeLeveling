@@ -740,6 +740,43 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
                         break
 
             elif state == OPPONENT_TURN:
+                #check for status effects first
+                if opponent_pokemon.status != "none" and opponent_pokemon.status != "paralysis":
+                    opponent_healed_status = random.random() < 0.5
+                    if opponent_healed_status:
+                        if opponent_pokemon.status == "sleep":
+                            battle_text = f"{opponent_pokemon.name} woke up!"
+                            opponent_pokemon.status = "none"
+                            state = OPPONENT_TURN
+                            break
+                        elif opponent_pokemon.status == "confusion":
+                            battle_text = f"{opponent_pokemon.name} is no longer confused!"
+                            opponent_pokemon.status = "none"
+                            state = OPPONENT_TURN
+                            break
+                        elif opponent_pokemon.status == "freeze":
+                            battle_text = f"{opponent_pokemon.name} thawed out!"
+                            opponent_pokemon.status = "none"
+                            state = OPPONENT_TURN
+                            break
+                    else:
+                        if opponent_pokemon.status == "sleep":
+                            battle_text = f"{opponent_pokemon.name} is asleep and can't move!"
+                            state = OPPONENT_MOVE
+                            break
+                        elif opponent_pokemon.status == "confusion":
+                            battle_text = f"{opponent_pokemon.name} is confused and hurt itself!"
+                            opponent_pokemon.take_damage(10)
+                            state = OPPONENT_MOVE
+                            break
+                        elif opponent_pokemon.status == "freeze":
+                            battle_text = f"{opponent_pokemon.name} is frozen solid and can't move!"
+                            state = OPPONENT_MOVE
+                            break
+                elif opponent_pokemon.status == "paralysis" and random.random() < 0.6:
+                    battle_text = f"{opponent_pokemon.name} is paralyzed and can't move!"
+                    state = OPPONENT_MOVE
+                    break
                 # Choose the best move based on type effectiveness and status
                 best_move = None
                 best_damage = 0

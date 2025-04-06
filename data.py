@@ -185,4 +185,12 @@ def save_player_data(player, map_data, region_pokedex):
     with open("player_data.json", "w") as file:
         json.dump(data, file, indent=4)
 
+def delete_player_data():
+    try:
+        os.remove("player_data.json")
+        print("Player data deleted successfully.")
+    except FileNotFoundError:
+        print("No player data file found to delete.")
+    except Exception as e:
+        print(f"Error deleting player data: {e}")
 
