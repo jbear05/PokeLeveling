@@ -212,6 +212,8 @@ class Pokemon:
             num_hits_text = f"Hit {num_hits} time(s)!"
         damage = round(damage)  # Round to the nearest integer
         opponent.take_damage(damage)  # Apply the damage to the opponent
+        if move['name'].lower() == "double-edge":
+            self.take_damage(damage // 3)
         return damage, is_critical, is_effective, is_not_effective, is_null, ailment_applied, stat_change_applied, target, num_hits_text, missed
 
     def draw(self, screen, x, y):
@@ -316,8 +318,11 @@ class Player:
         return self.pokemon_team[choice]
 
     def attempt_catch(self, wild_pokemon):
-        # Chance to catch depends on Pokémon health and type of Pokéball
-        catch_chance = 1 - wild_pokemon.current_health/wild_pokemon.stats['hp']
+        # Chance to catch depends on Pokémon health and status effects and if pokemon is legendary
+        if wild_pokemon.name in ["Mew", "Mewtwo", "Rayquaza", "Groudon", "Kyogre", "Palkia", "Dialga", "Zekrom", "Reshiram"]:
+            catch_chance = 0.11  # Legendary Pokémon have a fixed low catch chance
+        else:
+            catch_chance = 1 - wild_pokemon.current_health/wild_pokemon.stats['hp']
         if wild_pokemon.status != None:
             catch_chance += 0.1
         if random.random() < catch_chance:
