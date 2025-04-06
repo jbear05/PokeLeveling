@@ -687,8 +687,7 @@ while running:
                 # Player lost the battle, delete the player data and quit the game
                 delete_player_data()
                 #close the game
-                pygame.quit()
-                exit()
+                break
             
 
         # Display the rewards text if the timer is running
