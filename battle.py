@@ -353,6 +353,10 @@ def battle(screen, width, height, battle_stage, player_pokemon, opponent_pokemon
             return False
         elif battle_text == f"You lost the battle!":
             pygame.time.delay(1000)  # Add a small delay to slow down the battle
+            battle_text = "Game Over!"
+            continue
+        elif battle_text == "Game Over!":
+            pygame.time.delay(2000)  # Wait for 2 seconds before quitting
             battle_over = True
         elif battle_text == f"You won the battle!" or battle_text == f"You won the battle! {player_pokemon.name} leveled up to level {player_pokemon.level}!":
             pygame.time.delay(1000)  # Add a small delay to slow down the battle
