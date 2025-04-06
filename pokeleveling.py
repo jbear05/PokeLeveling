@@ -688,6 +688,7 @@ while running:
                 delete_player_data()
                 #close the game
                 pygame.quit()
+                exit()
             
 
         # Display the rewards text if the timer is running
